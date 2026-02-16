@@ -378,6 +378,30 @@ export default function ComprehensiveDashboard() {
                             <p className="text-green-100">Revenue optimization, cost management & profitability analysis</p>
                         </div>
 
+                        {/* Financial Summary Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
+                                <div className="text-sm text-gray-600 mb-1">Total Revenue (YTD)</div>
+                                <div className="text-3xl font-bold text-gray-900">Rs. 18.2M</div>
+                                <div className="text-sm text-green-600 mt-2">↑ 8.4% vs target</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-emerald-500">
+                                <div className="text-sm text-gray-600 mb-1">Net Profit Margin</div>
+                                <div className="text-3xl font-bold text-gray-900">22.4%</div>
+                                <div className="text-sm text-green-600 mt-2">↑ 1.2% point increase</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+                                <div className="text-sm text-gray-600 mb-1">Patient Volume</div>
+                                <div className="text-3xl font-bold text-gray-900">14,245</div>
+                                <div className="text-sm text-blue-600 mt-2">↑ 4.5% year-over-year</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-indigo-500">
+                                <div className="text-sm text-gray-600 mb-1">Avg Revenue/Patient</div>
+                                <div className="text-3xl font-bold text-gray-900">Rs. 1,280</div>
+                                <div className="text-sm text-gray-600 mt-2">Consistent with budget</div>
+                            </div>
+                        </div>
+
                         {/* Monthly Financial Performance Table */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
                             <h3 className="text-xl font-bold text-gray-900 mb-6">📅 Monthly Financial Performance</h3>
@@ -532,6 +556,30 @@ export default function ComprehensiveDashboard() {
                             <p className="text-red-100">Outcomes, safety metrics & continuous improvement</p>
                         </div>
 
+                        {/* Clinical Summary Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-emerald-500">
+                                <div className="text-sm text-gray-600 mb-1">Mortality Rate</div>
+                                <div className="text-3xl font-bold text-gray-900">1.1%</div>
+                                <div className="text-sm text-green-600 mt-2">📉 Reduced by 0.3%</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+                                <div className="text-sm text-gray-600 mb-1">Infection Rate</div>
+                                <div className="text-3xl font-bold text-gray-900">0.7%</div>
+                                <div className="text-sm text-blue-600 mt-2">✓ Below national avg</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500">
+                                <div className="text-sm text-gray-600 mb-1">Readmission (30-day)</div>
+                                <div className="text-3xl font-bold text-gray-900">12.0%</div>
+                                <div className="text-sm text-yellow-600 mt-2">Within target range</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-purple-500">
+                                <div className="text-sm text-gray-600 mb-1">Patient Satisfaction</div>
+                                <div className="text-3xl font-bold text-gray-900">88%</div>
+                                <div className="text-sm text-purple-600 mt-2">↑ Top tier ranking</div>
+                            </div>
+                        </div>
+
                         {/* Quality Metrics Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
                             <h3 className="text-xl font-bold text-gray-900 mb-6">📈 Quality Metrics - 6 Month Trend</h3>
@@ -548,28 +596,6 @@ export default function ComprehensiveDashboard() {
                                     <Line type="monotone" dataKey="satisfaction" stroke="#10b981" strokeWidth={3} name="Satisfaction" />
                                 </LineChart>
                             </ResponsiveContainer>
-                            <div className="mt-6 grid grid-cols-4 gap-4">
-                                <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
-                                    <div className="text-sm text-gray-600">Mortality Rate</div>
-                                    <div className="text-3xl font-bold text-green-600">1.1%</div>
-                                    <div className="text-xs text-gray-600 mt-1">↓ Improving (Target: 1.5%)</div>
-                                </div>
-                                <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
-                                    <div className="text-sm text-gray-600">Infection Rate</div>
-                                    <div className="text-3xl font-bold text-green-600">0.7%</div>
-                                    <div className="text-xs text-gray-600 mt-1">✓ Below target (1.0%)</div>
-                                </div>
-                                <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
-                                    <div className="text-sm text-gray-600">Readmission</div>
-                                    <div className="text-3xl font-bold text-green-600">12.0%</div>
-                                    <div className="text-xs text-gray-600 mt-1">↓ Improving trend</div>
-                                </div>
-                                <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
-                                    <div className="text-sm text-gray-600">Satisfaction</div>
-                                    <div className="text-3xl font-bold text-green-600">88%</div>
-                                    <div className="text-xs text-gray-600 mt-1">↑ Above target (90%)</div>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Patient Satisfaction Radar */}
@@ -623,7 +649,7 @@ export default function ComprehensiveDashboard() {
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="diagnosis" />
                                     <YAxis yAxisId="left" label={{ value: 'Rate (%)', angle: -90, position: 'insideLeft' }} />
-                                    <YAxis yAxisId="right" orientation="right" label={{ value: 'Cost (000s)', angle: 90, position: 'insideRight' }} />
+                                    <YAxis yAxisId="right" orientation="right" label={{ value: 'Cost (000s)', angle: -90, position: 'insideRight' }} />
                                     <Tooltip />
                                     <Legend />
                                     <Bar yAxisId="left" dataKey="rate" fill="#ef4444" name="Readmission Rate (%)" />
@@ -640,7 +666,7 @@ export default function ComprehensiveDashboard() {
                     </div>
                 )}
 
-                {/* OPERATIONAL TAB - Continue in next message... */}
+                {/* OPERATIONAL TAB */}
                 {activeTab === 'operational' && (
                     <div className="space-y-6 slide-in">
                         <div className="bg-gradient-to-r from-orange-500 to-amber-600 rounded-2xl p-8 text-white shadow-premium">
@@ -648,9 +674,33 @@ export default function ComprehensiveDashboard() {
                             <p className="text-orange-100">Efficiency metrics, throughput & process optimization</p>
                         </div>
 
-                        {/* Operational Metrics */}
+                        {/* Operational Summary Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-orange-500">
+                                <div className="text-sm text-gray-600 mb-1">Bed Turnover Rate</div>
+                                <div className="text-3xl font-bold text-gray-900">2.3 hrs</div>
+                                <div className="text-sm text-green-600 mt-2">⚡ Improving speed</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+                                <div className="text-sm text-gray-600 mb-1">Avg ER Wait Time</div>
+                                <div className="text-3xl font-bold text-gray-900">32 min</div>
+                                <div className="text-sm text-blue-600 mt-2">✓ Below 40m target</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500">
+                                <div className="text-sm text-gray-600 mb-1">Surgery Start On-Time</div>
+                                <div className="text-3xl font-bold text-gray-900">87%</div>
+                                <div className="text-sm text-yellow-600 mt-2">⚠ Near 90% target</div>
+                            </div>
+                            <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
+                                <div className="text-sm text-gray-600 mb-1">Discharge &lt; Noon</div>
+                                <div className="text-3xl font-bold text-gray-900">42%</div>
+                                <div className="text-sm text-red-600 mt-2">↓ Lagging target (50%)</div>
+                            </div>
+                        </div>
+
+                        {/* Operational Metrics List */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">⚙️ Key Operational Efficiency Metrics</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-6">⚙️ Detailed Operational Efficiency Metrics</h3>
                             <div className="space-y-4">
                                 {operationalMetrics.map((metric, idx) => (
                                     <div key={idx} className="border border-gray-200 rounded-xl p-6 card-hover">
