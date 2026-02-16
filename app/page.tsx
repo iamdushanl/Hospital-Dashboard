@@ -1,495 +1,771 @@
 'use client'
 
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import { useState } from 'react'
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadialBarChart, RadialBar } from 'recharts'
+import { useState, useEffect } from 'react'
 
-export default function ExecutiveDashboard() {
+export default function ComprehensiveHospitalDashboard() {
+    const [activeTab, setActiveTab] = useState('executive')
     const [timeRange, setTimeRange] = useState('30d')
-    const [selectedDept, setSelectedDept] = useState('All')
+    const [livePatients, setLivePatients] = useState(142)
+    const [liveERWait, setLiveERWait] = useState(28)
 
-    // EXECUTIVE KPIs - What C-Suite Needs Daily
-    const executiveKPIs = {
-        financial: {
-            revenue: 1850000, // This month
-            revenueChange: 8.3,
-            costPerPatient: 4250,
-            costChange: -3.2,
-            margin: 18.5,
-            marginChange: 2.1,
-            arDays: 42, // Accounts receivable days
-            arChange: -5
-        },
-        operational: {
-            bedUtilization: 78.5,
-            targetUtilization: 85,
-            avgLOS: 5.8, // days
-            targetLOS: 5.2,
-            erWaitTime: 32, // minutes
-            targetERWait: 30,
-            surgeryUtilization: 82,
-            targetSurgery: 90
-        },
-        clinical: {
-            mortalityRate: 1.2,
-            industryAvg: 1.5,
-            infectionRate: 0.8,
-            targetInfection: 1.0,
-            readmissionRate: 12.3,
-            targetReadmission: 10.0,
-            patientSatisfaction: 87,
-            targetSatisfaction: 90
-        }
-    }
+    // Simulate real-time data
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLivePatients(prev => Math.max(120, Math.min(180, prev + Math.floor(Math.random() * 7) - 3)))
+            setLiveERWait(prev => Math.max(15, Math.min(45, prev + Math.floor(Math.random() * 7) - 3)))
+        }, 3000)
+        return () => clearInterval(interval)
+    }, [])
 
-    // Financial Performance Trend
-    const financialTrend = [
-        { month: 'Jul', revenue: 1640, cost: 1350, margin: 17.7, patients: 412 },
-        { month: 'Aug', revenue: 1720, cost: 1390, margin: 19.2, patients: 435 },
-        { month: 'Sep', revenue: 1680, cost: 1420, margin: 15.5, patients: 428 },
-        { month: 'Oct', revenue: 1780, cost: 1440, margin: 19.1, patients: 458 },
-        { month: 'Nov', revenue: 1810, cost: 1465, margin: 19.1, patients: 467 },
-        { month: 'Dec', revenue: 1850, cost: 1510, margin: 18.4, patients: 485 },
+    // Colors
+    const COLORS = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe', '#43e97b', '#fa709a', '#fee140', '#30cfd0']
+
+    // Mock Data - Financial
+    const monthlyRevenue = [
+        { month: 'Jan', revenue: 2850, cost: 2340, margin: 17.9, patients: 612 },
+        { month: 'Feb', revenue: 2920, cost: 2380, margin: 18.5, patients: 628 },
+        { month: 'Mar', revenue: 3100, cost: 2450, margin: 21.0, patients: 654 },
+        { month: 'Apr', revenue: 3050, cost: 2510, margin: 17.7, patients: 642 },
+        { month: 'May', revenue: 3280, cost: 2590, margin: 21.0, patients: 671 },
+        { month: 'Jun', revenue: 3150, cost: 2620, margin: 16.8, patients: 658 },
+        { month: 'Jul', revenue: 3320, cost: 2650, margin: 20.2, patients: 683 },
+        { month: 'Aug', revenue: 3450, cost: 2710, margin: 21.4, patients: 695 },
+        { month: 'Sep', revenue: 3280, cost: 2730, margin: 16.8, patients: 672 },
+        { month: 'Oct', revenue: 3520, cost: 2780, margin: 21.0, patients: 702 },
+        { month: 'Nov', revenue: 3680, cost: 2850, margin: 22.6, patients: 724 },
+        { month: 'Dec', revenue: 3850, cost: 2920, margin: 24.2, patients: 745 }
     ]
 
-    // Department Performance Matrix
-    const departmentPerformance = [
-        {
-            dept: 'Emergency',
-            revenue: 425000,
-            cost: 380000,
-            margin: 10.6,
-            patients: 1234,
-            avgLOS: 0.5,
-            satisfaction: 82,
-            utilization: 92,
-            status: 'warning' // over capacity
-        },
-        {
-            dept: 'Cardiology',
-            revenue: 680000,
-            cost: 510000,
-            margin: 25.0,
-            patients: 892,
-            avgLOS: 6.2,
-            satisfaction: 91,
-            utilization: 85,
-            status: 'good'
-        },
-        {
-            dept: 'Orthopedics',
-            revenue: 520000,
-            cost: 390000,
-            margin: 25.0,
-            patients: 547,
-            avgLOS: 8.1,
-            satisfaction: 88,
-            utilization: 78,
-            status: 'good'
-        },
-        {
-            dept: 'Pediatrics',
-            revenue: 280000,
-            cost: 245000,
-            margin: 12.5,
-            patients: 823,
-            avgLOS: 3.2,
-            satisfaction: 93,
-            utilization: 71,
-            status: 'underutilized'
-        },
-        {
-            dept: 'Neurology',
-            revenue: 445000,
-            cost: 355000,
-            margin: 20.2,
-            patients: 654,
-            avgLOS: 7.5,
-            satisfaction: 85,
-            utilization: 82,
-            status: 'good'
-        },
+    const payerMix = [
+        { name: 'Government Insurance', value: 38, revenue: 1462 },
+        { name: 'Private Insurance', value: 32, revenue: 1232 },
+        { name: 'Self-Pay', value: 18, revenue: 693 },
+        { name: 'Medicare', value: 12, revenue: 462 }
     ]
 
-    // Patient Flow Analysis
-    const patientFlow = [
-        { hour: '00:00', admissions: 2, discharges: 0, erVisits: 5, surgeries: 0 },
-        { hour: '04:00', admissions: 1, discharges: 0, erVisits: 3, surgeries: 0 },
-        { hour: '08:00', admissions: 15, discharges: 8, erVisits: 18, surgeries: 12 },
-        { hour: '12:00', admissions: 22, discharges: 12, erVisits: 28, surgeries: 15 },
-        { hour: '16:00', admissions: 18, discharges: 15, erVisits: 32, surgeries: 8 },
-        { hour: '20:00', admissions: 12, discharges: 5, erVisits: 24, surgeries: 2 },
+    const topServices = [
+        { service: 'Surgery', revenue: 945, patients: 156 },
+        { service: 'Cardiology', revenue: 812, patients: 189 },
+        { service: 'Oncology', revenue: 756, patients: 124 },
+        { service: 'Orthopedics', revenue: 623, patients: 142 },
+        { service: 'Neurology', revenue: 534, patients: 98 },
+        { service: 'Emergency', revenue: 487, patients: 423 },
+        { service: 'Imaging', revenue: 398, patients: 672 },
+        { service: 'Laboratory', revenue: 295, patients: 1243 }
     ]
 
-    // Clinical Quality Metrics
+    // Clinical Quality Data
     const qualityMetrics = [
-        { metric: 'Mortality Rate', value: 1.2, target: 1.5, benchmark: 1.5, unit: '%', status: 'good' },
-        { metric: 'Infection Rate', value: 0.8, target: 1.0, benchmark: 1.2, unit: '%', status: 'good' },
-        { metric: 'Readmission Rate (30d)', value: 12.3, target: 10.0, benchmark: 14.5, unit: '%', status: 'warning' },
-        { metric: 'Patient Satisfaction', value: 87, target: 90, benchmark: 85, unit: '%', status: 'warning' },
-        { metric: 'ER Wait Time', value: 32, target: 30, benchmark: 45, unit: 'min', status: 'warning' },
-        { metric: 'Medication Errors', value: 2.1, target: 2.0, benchmark: 3.5, unit: 'per 1000', status: 'warning' },
+        { metric: 'Mortality Rate', value: 1.2, target: 1.5, benchmark: 1.6, status: 'good' },
+        { metric: 'HAI Rate', value: 0.8, target: 1.0, benchmark: 1.3, status: 'good' },
+        { metric: '30d Readmission', value: 12.3, target: 10.0, benchmark: 14.2, status: 'warning' },
+        { metric: 'Patient Satisfaction', value: 87, target: 90, benchmark: 82, status: 'warning' },
+        { metric: 'Medication Errors', value: 2.1, target: 2.0, benchmark: 3.2, status: 'warning' }
     ]
 
-    // Revenue by Service Line
-    const revenueByService = [
-        { service: 'Surgery', revenue: 680, margin: 28, volume: 156 },
-        { service: 'Cardiology', revenue: 520, margin: 25, volume: 892 },
-        { service: 'Imaging', revenue: 340, margin: 35, volume: 2340 },
-        { service: 'Lab Services', revenue: 280, margin: 22, volume: 4850 },
-        { service: 'Emergency', revenue: 425, margin: 11, volume: 1234 },
-        { service: 'Outpatient', revenue: 315, margin: 18, volume: 3200 },
+    const readmissionByDiagnosis = [
+        { diagnosis: 'Heart Failure', rate: 18.5, count: 42 },
+        { diagnosis: 'Pneumonia', rate: 15.2, count: 35 },
+        { diagnosis: 'COPD', rate: 14.8, count: 28 },
+        { diagnosis: 'Sepsis', rate: 12.3, count: 19 },
+        { diagnosis: 'Stroke', rate: 9.8, count: 15 }
     ]
 
-    // Predictive Analytics - Next 30 Days
+    // Patient Analytics
+    const ageDistribution = [
+        { age: '0-17', male: 45, female: 42 },
+        { age: '18-30', male: 68, female: 72 },
+        { age: '31-45', male: 92, female: 95 },
+        { age: '46-60', male: 115, female: 108 },
+        { age: '61-75', male: 89, female: 93 },
+        { age: '76+', male: 52, female: 58 }
+    ]
+
+    const topDiagnoses = [
+        { diagnosis: 'Hypertension', count: 234, avgLOS: 3.2 },
+        { diagnosis: 'Diabetes', count: 198, avgLOS: 4.1 },
+        { diagnosis: 'COVID-19', count: 176, avgLOS: 6.8 },
+        { diagnosis: 'Heart Disease', count: 145, avgLOS: 5.4 },
+        { diagnosis: 'Pneumonia', count: 132, avgLOS: 5.9 },
+        { diagnosis: 'COPD', count: 98, avgLOS: 6.2 },
+        { diagnosis: 'Stroke', count: 87, avgLOS: 7.5 },
+        { diagnosis: 'Kidney Disease', count: 76, avgLOS: 5.1 }
+    ]
+
+    // Operations Data
+    const bedUtilization = [
+        { ward: 'ICU', capacity: 24, occupied: 22, utilization: 92, avgLOS: 4.2 },
+        { ward: 'General', capacity: 120, occupied: 95, utilization: 79, avgLOS: 5.8 },
+        { ward: 'Private', capacity: 45, occupied: 31, utilization: 69, avgLOS: 3.9 },
+        { ward: 'Pediatric', capacity: 30, occupied: 18, utilization: 60, avgLOS: 4.5 },
+        { ward: 'Maternity', capacity: 25, occupied: 20, utilization: 80, avgLOS: 2.8 }
+    ]
+
+    const edMetrics = [
+        { time: '00:00', arrivals: 8, admitted: 2, lwbs: 0 },
+        { time: '04:00', arrivals: 5, admitted: 1, lwbs: 0 },
+        { time: '08:00', arrivals: 23, admitted: 8, lwbs: 1 },
+        { time: '12:00', arrivals: 35, admitted: 12, lwbs: 2 },
+        { time: '16:00', arrivals: 42, admitted: 15, lwbs: 3 },
+        { time: '20:00', arrivals: 31, admitted: 10, lwbs: 2 }
+    ]
+
+    // Workforce Data
+    const doctorProductivity = [
+        { name: 'Dr. Silva', patients: 28, revenue: 145, satisfaction: 93 },
+        { name: 'Dr. Perera', patients: 26, revenue: 138, satisfaction: 91 },
+        { name: 'Dr. Fernando', patients: 24, revenue: 125, satisfaction: 89 },
+        { name: 'Dr. Jayawardena', patients: 23, revenue: 118, satisfaction: 88 },
+        { name: 'Dr. Wickramasinghe', patients: 22, revenue: 112, satisfaction: 90 }
+    ]
+
+    const staffingLevels = [
+        { dept: 'Emergency', nurses: 18, required: 22, gap: -4, overtime: 45 },
+        { dept: 'ICU', nurses: 24, required: 28, gap: -4, overtime: 52 },
+        { dept: 'General Ward', nurses: 42, required: 45, gap: -3, overtime: 28 },
+        { dept: 'OR', nurses: 16, required: 16, gap: 0, overtime: 15 }
+    ]
+
+    // Predictive Analytics
     const predictions = {
-        admissions: { predicted: 1520, confidence: 94, trend: 'up' },
-        revenue: { predicted: 1920000, confidence: 91, trend: 'up' },
-        criticalBeds: { predicted: 28, confidence: 89, trend: 'up' },
-        staffingNeeds: { predicted: 142, confidence: 87, trend: 'stable' },
+        admissions: { current: 672, predicted: 718, confidence: 94, change: 6.8 },
+        revenue: { current: 3850, predicted: 4120, confidence: 91, change: 7.0 },
+        occupancy: { current: 78, predicted: 84, confidence: 89, change: 7.7 },
+        erVisits: { current: 1243, predicted: 1356, confidence: 87, change: 9.1 }
     }
 
-    // Alerts & Action Items
-    const alerts = [
-        { priority: 'high', type: 'Operational', message: 'Emergency Dept at 92% capacity - consider diversion protocol', action: 'Add 2 temp staff, activate overflow area' },
-        { priority: 'high', type: 'Financial', message: '485 high-risk readmissions predicted - $2.8M at risk', action: 'Deploy care coordination team' },
-        { priority: 'medium', type: 'Quality', message: 'Patient satisfaction dropped 3pts in Neurology', action: 'Schedule dept review meeting' },
-        { priority: 'medium', type: 'Operational', message: 'Surgery utilization below target (82% vs 90%)', action: 'Review OR scheduling efficiency' },
-        { priority: 'low', type: 'Clinical', message: 'Pediatrics bed utilization at 71%', action: 'Opportunity for elective admissions' },
+    const forecast30Days = [
+        { day: 'Week 1', admissions: 172, lower: 165, upper: 179 },
+        { day: 'Week 2', admissions: 178, lower: 169, upper: 187 },
+        { day: 'Week 3', admissions: 182, lower: 171, upper: 193 },
+        { day: 'Week 4', admissions: 186, lower: 174, upper: 198 }
     ]
 
-    const getStatusColor = (status: string) => {
-        if (status === 'good') return 'border-green-500 bg-green-50'
-        if (status === 'warning') return 'border-yellow-500 bg-yellow-50'
-        if (status === 'critical') return 'border-red-500 bg-red-50'
-        return 'border-gray-300 bg-gray-50'
-    }
-
-    const getTrendIcon = (change: number) => {
-        if (change > 0) return <span className="text-green-600">↑ +{change}%</span>
-        if (change < 0) return <span className="text-red-600">↓ {change}%</span>
-        return <span className="text-gray-600">→ 0%</span>
-    }
+    const tabs = [
+        { id: 'executive', name: 'Executive Summary', icon: '📊' },
+        { id: 'financial', name: 'Financial', icon: '💰' },
+        { id: 'clinical', name: 'Clinical Quality', icon: '🏥' },
+        { id: 'patients', name: 'Patient Analytics', icon: '👥' },
+        { id: 'operations', name: 'Operations', icon: '⚙️' },
+        { id: 'workforce', name: 'Workforce', icon: '👨‍⚕️' },
+        { id: 'predictive', name: 'Predictive', icon: '🔮' }
+    ]
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            {/* Executive Header */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white shadow-2xl">
-                <div className="max-w-[2000px] mx-auto px-8 py-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-2xl">
+                <div className="max-w-[1800px] mx-auto px-8 py-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h1 className="text-3xl font-bold mb-1">Hospital Executive Dashboard</h1>
-                            <p className="text-gray-300">Real-time KPIs • Financial • Operational • Clinical Quality</p>
+                            <h1 className="text-4xl font-bold mb-2">🏥 Hospital Analytics Dashboard</h1>
+                            <p className="text-blue-100">Comprehensive Data Intelligence Platform</p>
                         </div>
-                        <div className="flex gap-4">
-                            <select value={timeRange} onChange={(e) => setTimeRange(e.target.value)} className="bg-gray-700 text-white px-4 py-2 rounded-lg">
-                                <option value="7d">Last 7 Days</option>
-                                <option value="30d">Last 30 Days</option>
-                                <option value="90d">Last 90 Days</option>
-                                <option value="ytd">Year to Date</option>
-                            </select>
-                            <div className="text-right">
-                                <div className="text-sm text-gray-400">Last Updated</div>
-                                <div className="text-lg font-semibold">{new Date().toLocaleString()}</div>
+                        <div className="flex gap-4 items-center">
+                            <div className="text-right bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <div className="text-xs text-blue-100">Live Patients</div>
+                                <div className="text-3xl font-bold animate-pulse">{livePatients}</div>
+                            </div>
+                            <div className="text-right bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <div className="text-xs text-blue-100">ER Wait (min)</div>
+                                <div className="text-3xl font-bold">{liveERWait}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-[2000px] mx-auto px-8 py-6 space-y-6">
-
-                {/* CRITICAL ALERTS - Top Priority */}
-                <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">🚨 Critical Alerts & Required Actions</h2>
-                    <div className="space-y-3">
-                        {alerts.map((alert, idx) => (
-                            <div key={idx} className={`p-4 rounded-lg border-l-4 ${alert.priority === 'high' ? 'border-red-500 bg-red-50' :
-                                alert.priority === 'medium' ? 'border-yellow-500 bg-yellow-50' :
-                                    'border-blue-500 bg-blue-50'
-                                }`}>
-                                <div className="flex items-start justify-between">
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${alert.priority === 'high' ? 'bg-red-200 text-red-900' :
-                                                alert.priority === 'medium' ? 'bg-yellow-200 text-yellow-900' :
-                                                    'bg-blue-200 text-blue-900'
-                                                }`}>
-                                                {alert.priority.toUpperCase()}
-                                            </span>
-                                            <span className="text-sm font-semibold text-gray-600">{alert.type}</span>
-                                        </div>
-                                        <p className="font-semibold text-gray-900 mb-2">{alert.message}</p>
-                                        <p className="text-sm text-gray-700">→ <strong>Action:</strong> {alert.action}</p>
-                                    </div>
-                                    <button className="ml-4 px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors">
-                                        Take Action
-                                    </button>
-                                </div>
-                            </div>
+            {/* Tab Navigation */}
+            <div className="bg-white shadow-lg border-b-2 border-gray-200 sticky top-0 z-50">
+                <div className="max-w-[1800px] mx-auto px-8">
+                    <div className="flex gap-2 overflow-x-auto">
+                        {tabs.map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`px-6 py-4 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
+                                        ? 'border-b-4 border-blue-600 text-blue-600 bg-blue-50'
+                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                    }`}
+                            >
+                                <span className="mr-2">{tab.icon}</span>
+                                {tab.name}
+                            </button>
                         ))}
                     </div>
                 </div>
-
-                {/* EXECUTIVE KPI SUMMARY - The Money Shot */}
-                <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">📊 Executive KPI Summary</h2>
-
-                    {/* Financial KPIs */}
-                    <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-3">💰 Financial Performance (This Month)</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-t-4 border-green-500">
-                                <div className="text-sm text-gray-600 mb-1">Total Revenue</div>
-                                <div className="text-3xl font-bold text-gray-900">${(executiveKPIs.financial.revenue / 1000).toFixed(0)}K</div>
-                                <div className="text-sm mt-2">{getTrendIcon(executiveKPIs.financial.revenueChange)}</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-t-4 border-blue-500">
-                                <div className="text-sm text-gray-600 mb-1">Cost per Patient</div>
-                                <div className="text-3xl font-bold text-gray-900">${executiveKPIs.financial.costPerPatient}</div>
-                                <div className="text-sm mt-2">{getTrendIcon(executiveKPIs.financial.costChange)}</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-t-4 border-purple-500">
-                                <div className="text-sm text-gray-600 mb-1">Operating Margin</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.financial.margin}%</div>
-                                <div className="text-sm mt-2">{getTrendIcon(executiveKPIs.financial.marginChange)}</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-t-4 border-amber-500">
-                                <div className="text-sm text-gray-600 mb-1">AR Days</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.financial.arDays}</div>
-                                <div className="text-sm mt-2">{getTrendIcon(executiveKPIs.financial.arChange)}</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Operational KPIs */}
-                    <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-3">⚙️ Operational Efficiency</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="bg-white rounded-lg shadow-lg p-5">
-                                <div className="text-sm text-gray-600 mb-1">Bed Utilization</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.operational.bedUtilization}%</div>
-                                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${executiveKPIs.operational.bedUtilization}%` }}></div>
-                                </div>
-                                <div className="text-xs text-gray-500 mt-1">Target: {executiveKPIs.operational.targetUtilization}%</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5">
-                                <div className="text-sm text-gray-600 mb-1">Avg Length of Stay</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.operational.avgLOS} days</div>
-                                <div className="text-xs text-gray-500 mt-3">Target: {executiveKPIs.operational.targetLOS} days</div>
-                                <div className="text-sm text-yellow-600 mt-1">↑ 0.6d above target</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5">
-                                <div className="text-sm text-gray-600 mb-1">ER Wait Time</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.operational.erWaitTime} min</div>
-                                <div className="text-xs text-gray-500 mt-3">Target: {executiveKPIs.operational.targetERWait} min</div>
-                                <div className="text-sm text-yellow-600 mt-1">↑ 2min above target</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5">
-                                <div className="text-sm text-gray-600 mb-1">Surgery Utilization</div>
-                                <div className="text-3xl font-bold text-gray-900">{executiveKPIs.operational.surgeryUtilization}%</div>
-                                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                                    <div className="bg-green-500 h-2 rounded-full" style={{ width: `${executiveKPIs.operational.surgeryUtilization}%` }}></div>
-                                </div>
-                                <div className="text-xs text-gray-500 mt-1">Target: {executiveKPIs.operational.targetSurgery}%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Clinical KPIs */}
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-700 mb-3">🏥 Clinical Quality</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-l-4 border-green-500">
-                                <div className="text-sm text-gray-600 mb-1">Mortality Rate</div>
-                                <div className="text-3xl font-bold text-green-600">{executiveKPIs.clinical.mortalityRate}%</div>
-                                <div className="text-xs text-gray-500 mt-2">Industry: {executiveKPIs.clinical.industryAvg}%</div>
-                                <div className="text-sm text-green-600 mt-1">✓ Below industry avg</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-l-4 border-green-500">
-                                <div className="text-sm text-gray-600 mb-1">Infection Rate</div>
-                                <div className="text-3xl font-bold text-green-600">{executiveKPIs.clinical.infectionRate}%</div>
-                                <div className="text-xs text-gray-500 mt-2">Target: {executiveKPIs.clinical.targetInfection}%</div>
-                                <div className="text-sm text-green-600 mt-1">✓ Meeting target</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-l-4 border-yellow-500">
-                                <div className="text-sm text-gray-600 mb-1">30-Day Readmission</div>
-                                <div className="text-3xl font-bold text-yellow-600">{executiveKPIs.clinical.readmissionRate}%</div>
-                                <div className="text-xs text-gray-500 mt-2">Target: {executiveKPIs.clinical.targetReadmission}%</div>
-                                <div className="text-sm text-yellow-600 mt-1">⚠ 2.3% above target</div>
-                            </div>
-                            <div className="bg-white rounded-lg shadow-lg p-5 border-l-4 border-yellow-500">
-                                <div className="text-sm text-gray-600 mb-1">Patient Satisfaction</div>
-                                <div className="text-3xl font-bold text-yellow-600">{executiveKPIs.clinical.patientSatisfaction}%</div>
-                                <div className="text-xs text-gray-500 mt-2">Target: {executiveKPIs.clinical.targetSatisfaction}%</div>
-                                <div className="text-sm text-yellow-600 mt-1">⚠ 3% below target</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Financial Performance Trend */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white rounded-xl shadow-lg p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">📈 Revenue & Margin Trend (6 Months)</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <AreaChart data={financialTrend}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="month" />
-                                <YAxis yAxisId="left" label={{ value: 'Revenue ($K)', angle: -90, position: 'insideLeft' }} />
-                                <YAxis yAxisId="right" orientation="right" label={{ value: 'Margin (%)', angle: 90, position: 'insideRight' }} />
-                                <Tooltip />
-                                <Legend />
-                                <Area yAxisId="left" type="monotone" dataKey="revenue" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} name="Revenue ($K)" />
-                                <Line yAxisId="right" type="monotone" dataKey="margin" stroke="#10b981" strokeWidth={3} name="Margin (%)" />              </AreaChart>
-                        </ResponsiveContainer>
-                        <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                            <p className="text-sm text-gray-700"><strong>Insight:</strong> Revenue up 12.8% vs 6mo ago. Margin stable at 18.4%. Patient volume +17.7%.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-xl shadow-lg p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">💼 Revenue by Service Line</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={revenueByService} layout="vertical">
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis type="number" />
-                                <YAxis dataKey="service" type="category" width={100} />
-                                <Tooltip />
-                                <Legend />
-                                <Bar dataKey="revenue" fill="#8b5cf6" name="Revenue ($K)" />
-                                <Bar dataKey="margin" fill="#10b981" name="Margin (%)" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                        <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                            <p className="text-sm text-gray-700"><strong>Opportunity:</strong> Surgery has highest margin (28%). Increase OR utilization from 82% to 90% = +$120K/mo.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Department Performance Matrix */}
-                <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">🏥 Department Performance Matrix</h3>
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                    <th className="text-left p-3 font-semibold">Department</th>
-                                    <th className="text-right p-3 font-semibold">Revenue</th>
-                                    <th className="text-right p-3 font-semibold">Cost</th>
-                                    <th className="text-right p-3 font-semibold">Margin</th>
-                                    <th className="text-right p-3 font-semibold">Patients</th>
-                                    <th className="text-right p-3 font-semibold">Avg LOS</th>
-                                    <th className="text-right p-3 font-semibold">Satisfaction</th>
-                                    <th className="text-center p-3 font-semibold">Utilization</th>
-                                    <th className="text-center p-3 font-semibold">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {departmentPerformance.map((dept, idx) => (
-                                    <tr key={idx} className="border-b border-gray-200 hover:bg-gray-50">
-                                        <td className="p-3 font-semibold text-gray-900">{dept.dept}</td>
-                                        <td className="p-3 text-right">${(dept.revenue / 1000).toFixed(0)}K</td>
-                                        <td className="p-3 text-right">${(dept.cost / 1000).toFixed(0)}K</td>
-                                        <td className="p-3 text-right font-semibold text-green-600">{dept.margin}%</td>
-                                        <td className="p-3 text-right">{dept.patients}</td>
-                                        <td className="p-3 text-right">{dept.avgLOS}d</td>
-                                        <td className="p-3 text-right">{dept.satisfaction}%</td>
-                                        <td className="p-3">
-                                            <div className="flex items-center justify-center">
-                                                <div className="w-full bg-gray-200 rounded-full h-2 max-w-[100px]">
-                                                    <div className={`h-2 rounded-full ${dept.utilization > 90 ? 'bg-red-500' : dept.utilization > 80 ? 'bg-green-500' : 'bg-yellow-500'}`} style={{ width: `${dept.utilization}%` }}></div>
-                                                </div>
-                                                <span className="ml-2 text-sm font-semibold">{dept.utilization}%</span>
-                                            </div>
-                                        </td>
-                                        <td className="p-3 text-center">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${dept.status === 'good' ? 'bg-green-100 text-green-800' :
-                                                dept.status === 'warning' ? 'bg-yellow-100 text-yellow-800' :
-                                                    'bg-blue-100 text-blue-800'
-                                                }`}>
-                                                {dept.status === 'good' ? '✓ Good' :
-                                                    dept.status === 'warning' ? '⚠ Over Cap' :
-                                                        '→ Low Util'}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                {/* Patient Flow & Predictive Analytics */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white rounded-xl shadow-lg p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">🔄 24-Hour Patient Flow</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={patientFlow}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="hour" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="admissions" stroke="#3b82f6" strokeWidth={2} name="Admissions" />
-                                <Line type="monotone" dataKey="discharges" stroke="#10b981" strokeWidth={2} name="Discharges" />
-                                <Line type="monotone" dataKey="erVisits" stroke="#f59e0b" strokeWidth={2} name="ER Visits" />
-                            </LineChart>
-                        </ResponsiveContainer>
-                        <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                            <p className="text-sm text-gray-700"><strong>Pattern:</strong> Peak ER visits 4-8PM (32 visits). Schedule 2 extra staff 3-9PM.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-xl shadow-lg p-6">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">🔮 Predictive Analytics (Next 30 Days)</h3>
-                        <div className="space-y-4">
-                            <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <div className="text-sm text-gray-600">Predicted Admissions</div>
-                                        <div className="text-3xl font-bold text-blue-600">{predictions.admissions.predicted}</div>
-                                    </div>
-                                    <div className="text-right">
-                                        <div className="text-sm text-gray-600">Confidence</div>
-                                        <div className="text-2xl font-bold text-gray-900">{predictions.admissions.confidence}%</div>
-                                    </div>
-                                </div>
-                                <div className="text-sm text-blue-700 mt-2">↑ 8% increase expected vs last month</div>
-                            </div>
-
-                            <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <div className="text-sm text-gray-600">Predicted Revenue</div>
-                                        <div className="text-3xl font-bold text-green-600">${(predictions.revenue.predicted / 1000).toFixed(0)}K</div>
-                                    </div>
-                                    <div className="text-right">
-                                        <div className="text-sm text-gray-600">Confidence</div>
-                                        <div className="text-2xl font-bold text-gray-900">{predictions.revenue.confidence}%</div>
-                                    </div>
-                                </div>
-                                <div className="text-sm text-green-700 mt-2">↑ 3.8% revenue growth projected</div>
-                            </div>
-
-                            <div className="p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <div className="text-sm text-gray-600">Critical Care Bed Need</div>
-                                        <div className="text-3xl font-bold text-red-600">{predictions.criticalBeds.predicted}</div>
-                                    </div>
-                                    <div className="text-right">
-                                        <div className="text-sm text-gray-600">Confidence</div>
-                                        <div className="text-2xl font-bold text-gray-900">{predictions.criticalBeds.confidence}%</div>
-                                    </div>
-                                </div>
-                                <div className="text-sm text-red-700 mt-2">⚠ 12% above current capacity - prepare surge plan</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            {/* Content Area */}
+            <div className="max-w-[1800px] mx-auto px-8 py-6">
+                {/* Executive Summary Tab */}
+                {activeTab === 'executive' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Executive Summary</h2>
+
+                        {/* Hero KPIs */}
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div className="bg-gradient-to-br from-green-400 to-green-600 text-white p-6 rounded-xl shadow-lg">
+                                <div className="text-sm opacity-90">Monthly Revenue</div>
+                                <div className="text-4xl font-bold mt-2">$3.85M</div>
+                                <div className="text-sm mt-2">↑ +24.2% vs last month</div>
+                            </div>
+                            <div className="bg-gradient-to-br from-blue-400 to-blue-600 text-white p-6 rounded-xl shadow-lg">
+                                <div className="text-sm opacity-90">Bed Occupancy</div>
+                                <div className="text-4xl font-bold mt-2">78%</div>
+                                <div className="text-sm mt-2">Target: 85%</div>
+                            </div>
+                            <div className="bg-gradient-to-br from-purple-400 to-purple-600 text-white p-6 rounded-xl shadow-lg">
+                                <div className="text-sm opacity-90">Patient Satisfaction</div>
+                                <div className="text-4xl font-bold mt-2">87%</div>
+                                <div className="text-sm mt-2">Goal: 90%</div>
+                            </div>
+                            <div className="bg-gradient-to-br from-pink-400 to-pink-600 text-white p-6 rounded-xl shadow-lg">
+                                <div className="text-sm opacity-90">ER Wait Time</div>
+                                <div className="text-4xl font-bold mt-2">{liveERWait} min</div>
+                                <div className="text-sm mt-2">Target: ≤30 min</div>
+                            </div>
+                        </div>
+
+                        {/* Charts */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Revenue Trend (12 Months)</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <AreaChart data={monthlyRevenue}>
+                                        <defs>
+                                            <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#667eea" stopOpacity={0.8} />
+                                                <stop offset="95%" stopColor="#667eea" stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="month" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Area type="monotone" dataKey="revenue" stroke="#667eea" fillOpacity={1} fill="url(#colorRev)" name="Revenue ($K)" />
+                                        <Line type="monotone" dataKey="margin" stroke="#10b981" strokeWidth={2} name="Margin (%)" />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Insight:</strong> Revenue up 35% YoY. Margin at 24.2% - highest in 12 months.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Payer Mix Distribution</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <PieChart>
+                                        <Pie data={payerMix} cx="50%" cy="50%" labelLine={false} label={({ name, value }) => `${name}: ${value}%`} outerRadius={100} fill="#8884d8" dataKey="value">
+                                            {payerMix.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Opportunity:</strong> Government insurance 38% - negotiate better rates for +$180K/yr.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Predictions */}
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 className="text-xl font-bold mb-4">🔮 30-Day ML Predictions</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                {Object.entries(predictions).map(([key, data]) => (
+                                    <div key={key} className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg border border-purple-200">
+                                        <div className="text-sm text-gray-600 capitalize">{key}</div>
+                                        <div className="text-3xl font-bold text-purple-600 mt-2">{data.predicted}</div>
+                                        <div className="text-xs text-gray-500 mt-1">Current: {data.current}</div>
+                                        <div className="text-sm text-green-600 mt-2">↑ +{data.change}%</div>
+                                        <div className="text-xs text-gray-500 mt-1">{data.confidence}% confidence</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Financial Tab */}
+                {activeTab === 'financial' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Financial Performance</h2>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Top Revenue Services</h3>
+                                <ResponsiveContainer width="100%" height={350}>
+                                    <BarChart data={topServices} layout="vertical">
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis type="number" />
+                                        <YAxis dataKey="service" type="category" width={100} />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="revenue" fill="#667eea" name="Revenue ($K)" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Actionable:</strong> Surgery generates $945K. Increase OR capacity to boost by 15% = +$142K/month.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Revenue vs Cost Trend</h3>
+                                <ResponsiveContainer width="100%" height={350}>
+                                    <LineChart data={monthlyRevenue}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="month" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Line type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} name="Revenue ($K)" />
+                                        <Line type="monotone" dataKey="cost" stroke="#ef4444" strokeWidth={3} name="Cost ($K)" />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Performance:</strong> Revenue growth outpacing cost growth. Margin expanding from 17.9% to 24.2%.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Financial KPIs Table */}
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 className="text-xl font-bold mb-4">Monthly Financial Summary</h3>
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead className="bg-gray-100">
+                                        <tr>
+                                            <th className="p-3 text-left">Month</th>
+                                            <th className="p-3 text-right">Revenue</th>
+                                            <th className="p-3 text-right">Cost</th>
+                                            <th className="p-3 text-right">Margin %</th>
+                                            <th className="p-3 text-right">Patients</th>
+                                            <th className="p-3 text-right">Rev/Patient</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {monthlyRevenue.slice(-6).map((row, idx) => (
+                                            <tr key={idx} className="border-b hover:bg-gray-50">
+                                                <td className="p-3 font-semibold">{row.month}</td>
+                                                <td className="p-3 text-right">${(row.revenue).toFixed(0)}K</td>
+                                                <td className="p-3 text-right">${(row.cost).toFixed(0)}K</td>
+                                                <td className="p-3 text-right font-semibold text-green-600">{row.margin}%</td>
+                                                <td className="p-3 text-right">{row.patients}</td>
+                                                <td className="p-3 text-right">${((row.revenue * 1000) / row.patients).toFixed(0)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Clinical Quality Tab */}
+                {activeTab === 'clinical' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Clinical Quality Metrics</h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            {qualityMetrics.map((metric, idx) => (
+                                <div key={idx} className={`p-4 rounded-xl shadow-lg ${metric.status === 'good' ? 'bg-gradient-to-br from-green-400 to-green-600' : 'bg-gradient-to-br from-yellow-400 to-yellow-600'} text-white`}>
+                                    <div className="text-xs opacity-90">{metric.metric}</div>
+                                    <div className="text-3xl font-bold mt-2">{metric.value}{metric.metric.includes('Rate') || metric.metric.includes('Readmission') ? '%' : metric.metric.includes('Satisfaction') ? '%' : ''}</div>
+                                    <div className="text-xs mt-2">Target: {metric.target}</div>
+                                    <div className="text-xs">Benchmark: {metric.benchmark}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">30-Day Readmission by Diagnosis</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={readmissionByDiagnosis}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="diagnosis" angle={-45} textAnchor="end" height={100} />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="rate" fill="#ef4444" name="Readmission Rate %" />
+                                        <Bar dataKey="count" fill="#3b82f6" name="Count" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Critical:</strong> Heart failure readmission 18.5%. Deploy care coordination team - save $420K/yr.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Quality Scorecard</h3>
+                                <div className="space-y-4">
+                                    {qualityMetrics.map((metric, idx) => (
+                                        <div key={idx}>
+                                            <div className="flex justify-between text-sm mb-1">
+                                                <span className="font-semibold">{metric.metric}</span>
+                                                <span className={metric.status === 'good' ? 'text-green-600' : 'text-yellow-600'}>
+                                                    {metric.value} / {metric.target}
+                                                </span>
+                                            </div>
+                                            <div className="w-full bg-gray-200 rounded-full h-3">
+                                                <div className={`h-3 rounded-full ${metric.status === 'good' ? 'bg-green-500' : 'bg-yellow-500'}`} style={{ width: `${(metric.value / metric.benchmark) * 100}%` }}></div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Overall:</strong> 3/5 metrics meet target. Focus on readmissions & satisfaction for Q1 goals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Patient Analytics Tab */}
+                {activeTab === 'patients' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Patient Analytics</h2>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Age & Gender Distribution</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={ageDistribution}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="age" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="male" fill="#3b82f6" name="Male" />
+                                        <Bar dataKey="female" fill="#ec4899" name="Female" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Demographics:</strong> Peak patients 46-60 age group. Plan geriatric services expansion.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Top Diagnoses</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={topDiagnoses.slice(0, 6)} layout="vertical">
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis type="number" />
+                                        <YAxis dataKey="diagnosis" type="category" width={100} />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="count" fill="#10b981" name="Patient Count" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Prevalence:</strong> Chronic diseases (HTN, Diabetes) dominate. Launch prevention program.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Operations Tab */}
+                {activeTab === 'operations' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Operations & Efficiency</h2>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Bed Utilization by Ward</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={bedUtilization}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="ward" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="utilization" fill="#8b5cf6" name="Utilization %" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Alert:</strong> ICU at 92% capacity. Private ward underutilized at 69% - rebalance resources.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Emergency Department Flow</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <LineChart data={edMetrics}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="time" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Line type="monotone" dataKey="arrivals" stroke="#f59e0b" strokeWidth={2} name="Arrivals" />
+                                        <Line type="monotone" dataKey="admitted" stroke="#10b981" strokeWidth={2} name="Admitted" />
+                                        <Line type="monotone" dataKey="lwbs" stroke="#ef4444" strokeWidth={2} name="LWBS" />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Peak Hours:</strong> 4-8PM has 42 arrivals. Add 2 extra docs 3-9PM to reduce wait time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Bed Utilization Table */}
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 className="text-xl font-bold mb-4">Ward Capacity Details</h3>
+                            <table className="w-full">
+                                <thead className="bg-gray-100">
+                                    <tr>
+                                        <th className="p-3 text-left">Ward</th>
+                                        <th className="p-3 text-right">Capacity</th>
+                                        <th className="p-3 text-right">Occupied</th>
+                                        <th className="p-3 text-right">Utilization</th>
+                                        <th className="p-3 text-right">Avg LOS</th>
+                                        <th className="p-3 text-left">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {bedUtilization.map((ward, idx) => (
+                                        <tr key={idx} className="border-b hover:bg-gray-50">
+                                            <td className="p-3 font-semibold">{ward.ward}</td>
+                                            <td className="p-3 text-right">{ward.capacity}</td>
+                                            <td className="p-3 text-right">{ward.occupied}</td>
+                                            <td className="p-3 text-right">
+                                                <span className={`font-semibold ${ward.utilization > 90 ? 'text-red-600' : ward.utilization > 80 ? 'text-green-600' : 'text-blue-600'}`}>
+                                                    {ward.utilization}%
+                                                </span>
+                                            </td>
+                                            <td className="p-3 text-right">{ward.avgLOS}d</td>
+                                            <td className="p-3">
+                                                <span className={`px-3 py-1 rounded-full text-xs font-bold ${ward.utilization > 90 ? 'bg-red-100 text-red-800' : ward.utilization > 75 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                                                    {ward.utilization > 90 ? '⚠ High' : ward.utilization > 75 ? '✓ Optimal' : '→ Low'}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
+
+                {/* Workforce Tab */}
+                {activeTab === 'workforce' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Workforce Analytics</h2>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Doctor Productivity Leaderboard</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={doctorProductivity} layout="vertical">
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis type="number" />
+                                        <YAxis dataKey="name" type="category" width={120} />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="patients" fill="#3b82f6" name="Patients/Day" />
+                                        <Bar dataKey="revenue" fill="#10b981" name="Revenue ($K)" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Top Performer:</strong> Dr. Silva sees 28 patients/day, $145K revenue, 93% satisfaction.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Nursing Staffing Gaps</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={staffingLevels}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="dept" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="nurses" fill="#10b981" name="Current Staff" />
+                                        <Bar dataKey="required" fill="#ef4444" name="Required" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Critical Shortage:</strong> Emergency & ICU need 4 nurses each. High overtime (45-52 hrs/week).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Staffing Table */}
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 className="text-xl font-bold mb-4">Department Staffing Analysis</h3>
+                            <table className="w-full">
+                                <thead className="bg-gray-100">
+                                    <tr>
+                                        <th className="p-3 text-left">Department</th>
+                                        <th className="p-3 text-right">Current Nurses</th>
+                                        <th className="p-3 text-right">Required</th>
+                                        <th className="p-3 text-right">Gap</th>
+                                        <th className="p-3 text-right">Overtime (hrs/week)</th>
+                                        <th className="p-3 text-left">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {staffingLevels.map((dept, idx) => (
+                                        <tr key={idx} className="border-b hover:bg-gray-50">
+                                            <td className="p-3 font-semibold">{dept.dept}</td>
+                                            <td className="p-3 text-right">{dept.nurses}</td>
+                                            <td className="p-3 text-right">{dept.required}</td>
+                                            <td className="p-3 text-right">
+                                                <span className={`font-semibold ${dept.gap < 0 ? 'text-red-600' : 'text-green-600'}`}>
+                                                    {dept.gap}
+                                                </span>
+                                            </td>
+                                            <td className="p-3 text-right">
+                                                <span className={dept.overtime > 40 ? 'text-red-600 font-semibold' : ''}>{dept.overtime}</span>
+                                            </td>
+                                            <td className="p-3">
+                                                {dept.gap < 0 ? (
+                                                    <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Hire {Math.abs(dept.gap)} nurses</span>
+                                                ) : (
+                                                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✓ Adequate</span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
+
+                {/* Predictive Analytics Tab */}
+                {activeTab === 'predictive' && (
+                    <div className="space-y-6 animate-fade-in">
+                        <h2 className="text-3xl font-bold text-gray-900">Predictive Analytics & Forecasting</h2>
+
+                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-8 rounded-xl shadow-2xl">
+                            <h3 className="text-2xl font-bold mb-6">🔮 ML-Powered 30-Day Forecast</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                {Object.entries(predictions).map(([key, data]) => (
+                                    <div key={key} className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
+                                        <div className="text-sm opacity-90 capitalize">{key}</div>
+                                        <div className="text-4xl font-bold mt-2">{data.predicted}</div>
+                                        <div className="text-sm mt-2">Current: {data.current}</div>
+                                        <div className="flex items-center gap-2 mt-2">
+                                            <span className="text-2xl">↑</span>
+                                            <span className="text-lg font-semibold">+{data.change}%</span>
+                                        </div>
+                                        <div className="text-xs mt-2 opacity-80">{data.confidence}% confidence</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Weekly Admission Forecast</h3>
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <AreaChart data={forecast30Days}>
+                                        <defs>
+                                            <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8} />
+                                                <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="day" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Area type="monotone" dataKey="admissions" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorForecast)" name="Predicted Admissions" />
+                                        <Line type="monotone" dataKey="upper" stroke="#ef4444" strokeDasharray="5 5" name="Upper Bound" />
+                                        <Line type="monotone" dataKey="lower" stroke="#10b981" strokeDasharray="5 5" name="Lower Bound" />
+                                    </AreaChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Forecast:</strong> Admissions trending up to 186/week. Prepare 15 additional beds by Week 4.</p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-xl shadow-lg">
+                                <h3 className="text-xl font-bold mb-4">Key Predictions Summary</h3>
+                                <div className="space-y-4">
+                                    <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
+                                        <div className="flex justify-between items-center">
+                                            <div>
+                                                <div className="text-sm text-gray-600">Predicted Admissions</div>
+                                                <div className="text-3xl font-bold text-blue-600">718</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-green-600 font-semibold">+6.8%</div>
+                                                <div className="text-xs text-gray-500">94% confidence</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                                        <div className="flex justify-between items-center">
+                                            <div>
+                                                <div className="text-sm text-gray-600">Predicted Revenue</div>
+                                                <div className="text-3xl font-bold text-green-600">$4.12M</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-green-600 font-semibold">+7.0%</div>
+                                                <div className="text-xs text-gray-500">91% confidence</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200">
+                                        <div className="flex justify-between items-center">
+                                            <div>
+                                                <div className="text-sm text-gray-600">Predicted Occupancy</div>
+                                                <div className="text-3xl font-bold text-purple-600">84%</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-green-600 font-semibold">+7.7%</div>
+                                                <div className="text-xs text-gray-500">89% confidence</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border border-orange-200">
+                                        <div className="flex justify-between items-center">
+                                            <div>
+                                                <div className="text-sm text-gray-600">Predicted ER Visits</div>
+                                                <div className="text-3xl font-bold text-orange-600">1,356</div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-green-600 font-semibold">+9.1%</div>
+                                                <div className="text-xs text-gray-500">87% confidence</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border-2 border-red-300">
+                                    <div className="font-bold text-red-700 mb-2">⚠️ Capacity Planning Alert</div>
+                                    <p className="text-sm text-gray-700">Next month predictions indicate 9.1% increase in ER visits + 7.7% higher occupancy. Recommend:</p>
+                                    <ul className="text-sm text-gray-700 mt-2 ml-4 list-disc">
+                                        <li>Add 2 ER physicians for evening shift</li>
+                                        <li>Prepare 20 overflow beds</li>
+                                        <li>Schedule extra nursing staff</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            <style jsx>{`
+                .animate-fade-in {
+                    animation: fadeIn 0.5s ease-in;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </div>
     )
 }
