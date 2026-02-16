@@ -1,6 +1,6 @@
 'use client'
 
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import {
     staffProductivity,
     departmentWorkforce,
@@ -64,9 +64,9 @@ export default function StaffProductivity() {
                                     <tr key={idx} className="border-b border-gray-200 hover:bg-gray-50">
                                         <td className="p-3">
                                             <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold ${idx === 0 ? 'bg-yellow-100 text-yellow-800' :
-                                                    idx === 1 ? 'bg-gray-100 text-gray-800' :
-                                                        idx === 2 ? 'bg-orange-100 text-orange-800' :
-                                                            'bg-blue-50 text-blue-800'
+                                                idx === 1 ? 'bg-gray-100 text-gray-800' :
+                                                    idx === 2 ? 'bg-orange-100 text-orange-800' :
+                                                        'bg-blue-50 text-blue-800'
                                                 }`}>
                                                 {idx + 1}
                                             </span>
@@ -83,8 +83,8 @@ export default function StaffProductivity() {
                                                 <div className="w-16 bg-gray-200 rounded-full h-2">
                                                     <div
                                                         className={`h-2 rounded-full ${doc.satisfaction >= 90 ? 'bg-green-500' :
-                                                                doc.satisfaction >= 85 ? 'bg-blue-500' :
-                                                                    'bg-yellow-500'
+                                                            doc.satisfaction >= 85 ? 'bg-blue-500' :
+                                                                'bg-yellow-500'
                                                             }`}
                                                         style={{ width: `${doc.satisfaction}%` }}
                                                     ></div>
@@ -94,8 +94,8 @@ export default function StaffProductivity() {
                                         </td>
                                         <td className="p-3 text-center">
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${doc.satisfaction >= 90 && doc.revenue > 100000 ? 'bg-green-100 text-green-800' :
-                                                    doc.satisfaction >= 85 ? 'bg-blue-100 text-blue-800' :
-                                                        'bg-yellow-100 text-yellow-800'
+                                                doc.satisfaction >= 85 ? 'bg-blue-100 text-blue-800' :
+                                                    'bg-yellow-100 text-yellow-800'
                                                 }`}>
                                                 {doc.satisfaction >= 90 && doc.revenue > 100000 ? '⭐ Top Performer' :
                                                     doc.satisfaction >= 85 ? '✓ Good' : '→ Average'}
@@ -144,8 +144,8 @@ export default function StaffProductivity() {
                                                 <div className="w-24 bg-gray-200 rounded-full h-2">
                                                     <div
                                                         className={`h-2 rounded-full ${staffingPercent >= 95 ? 'bg-green-500' :
-                                                                staffingPercent >= 85 ? 'bg-yellow-500' :
-                                                                    'bg-red-500'
+                                                            staffingPercent >= 85 ? 'bg-yellow-500' :
+                                                                'bg-red-500'
                                                             }`}
                                                         style={{ width: `${Math.min(staffingPercent, 100)}%` }}
                                                     ></div>
@@ -158,8 +158,8 @@ export default function StaffProductivity() {
                                         <td className="p-3 text-right">{dept.turnoverRate}%</td>
                                         <td className="p-3 text-center">
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${staffingPercent >= 95 && dept.overtimeHours < 100 ? 'bg-green-100 text-green-800' :
-                                                    staffingPercent >= 85 ? 'bg-yellow-100 text-yellow-800' :
-                                                        'bg-red-100 text-red-800'
+                                                staffingPercent >= 85 ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-red-100 text-red-800'
                                                 }`}>
                                                 {staffingPercent >= 95 && dept.overtimeHours < 100 ? '✓ Optimal' :
                                                     staffingPercent >= 85 ? '⚠ Understaffed' : '🚨 Critical'}

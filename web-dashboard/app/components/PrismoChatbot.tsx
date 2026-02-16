@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Send, X, MessageSquare, Bot, Sparkles, ChevronDown } from 'lucide-react'
+import { Send, X, Bot, Sparkles, ChevronDown } from 'lucide-react'
 
 interface Message {
     id: string
@@ -12,7 +12,6 @@ interface Message {
 
 export default function PrismoChatbot() {
     const [isOpen, setIsOpen] = useState(false)
-    const [isHovered, setIsHovered] = useState(false)
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
@@ -113,8 +112,8 @@ export default function PrismoChatbot() {
                             >
                                 <div
                                     className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${msg.role === 'user'
-                                            ? 'bg-indigo-600 text-white rounded-br-none'
-                                            : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
+                                        ? 'bg-indigo-600 text-white rounded-br-none'
+                                        : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
                                         }`}
                                 >
                                     {msg.role === 'assistant' && (
@@ -172,11 +171,9 @@ export default function PrismoChatbot() {
             {/* Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className={`group flex items-center gap-3 h-14 pl-4 pr-6 rounded-full shadow-2xl transition-all duration-300 ${isOpen
-                        ? 'bg-gray-900 text-white rotate-0'
-                        : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:scale-105'
+                    ? 'bg-gray-900 text-white rotate-0'
+                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:scale-105'
                     }`}
             >
                 <div className={`relative transition-transform duration-300 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
@@ -207,7 +204,7 @@ export default function PrismoChatbot() {
                                 Smart Assistant
                             </h4>
                             <p className="text-xs text-gray-300 leading-relaxed">
-                                I'm Prismo, your AI analyst. I sit <strong>above all your charts</strong> to give you instant insights from every data point!
+                                I&apos;m Prismo, your AI analyst. I sit <strong>above all your charts</strong> to give you instant insights from every data point!
                             </p>
                             {/* Arrow */}
                             <div className="absolute -bottom-6 right-8 w-4 h-4 bg-gray-900 rotate-45 transform"></div>

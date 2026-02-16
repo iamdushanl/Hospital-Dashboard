@@ -1,6 +1,6 @@
 'use client'
 
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from 'recharts'
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from 'recharts'
 import { useState, useEffect } from 'react'
 import PatientDemographics from './components/PatientDemographics'
 import StaffProductivity from './components/StaffProductivity'
@@ -18,7 +18,6 @@ import {
     losAnalysis,
     payerMixRevenue,
     topDRGs,
-    workforceProductivity,
     forecast30Days,
     strategicInitiatives
 } from './data/comprehensiveMockData'
@@ -58,16 +57,7 @@ export default function ComprehensiveDashboard() {
         { id: 'resources', label: '🔧 Resource Utilization', desc: 'Beds, ORs & equipment' },
     ]
 
-    const COLORS = {
-        primary: '#3b82f6',
-        success: '#10b981',
-        warning: '#f59e0b',
-        danger: '#ef4444',
-        purple: '#8b5cf6',
-        pink: '#ec4899',
-        teal: '#14b8a6',
-        indigo: '#6366f1'
-    }
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
@@ -260,7 +250,7 @@ export default function ComprehensiveDashboard() {
                                 30-Day Predictive Forecast
                             </h2>
                             <div className="grid grid-cols-3 gap-6">
-                                {Object.entries(forecast30Days).map(([key, data]: [string, any], idx) => (
+                                {Object.entries(forecast30Days).map(([key, data], idx) => (
                                     <div key={idx} className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
                                         <div className="text-sm opacity-90 mb-2">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}</div>
                                         <div className="flex items-end gap-3 mb-3">
@@ -540,7 +530,7 @@ export default function ComprehensiveDashboard() {
                             </ResponsiveContainer>
                             <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
                                 <p className="text-sm text-gray-700">
-                                    <strong>Performance:</strong> We're beating industry benchmarks on ALL service lines.
+                                    <strong>Performance:</strong> We&apos;re beating industry benchmarks on ALL service lines.
                                     Average 5.8% cost advantage = Rs. 145K/month savings.
                                 </p>
                             </div>
