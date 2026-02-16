@@ -378,6 +378,43 @@ export default function ComprehensiveDashboard() {
                             <p className="text-green-100">Revenue optimization, cost management & profitability analysis</p>
                         </div>
 
+                        {/* Monthly Financial Performance Table */}
+                        <div className="bg-white rounded-2xl shadow-premium p-8">
+                            <h3 className="text-xl font-bold text-gray-900 mb-6">📅 Monthly Financial Performance</h3>
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-b border-gray-200">
+                                            <th className="text-left p-4 font-bold text-gray-600">Month</th>
+                                            <th className="text-right p-4 font-bold text-gray-600">Revenue</th>
+                                            <th className="text-right p-4 font-bold text-gray-600">Cost</th>
+                                            <th className="text-right p-4 font-bold text-gray-600">Margin %</th>
+                                            <th className="text-right p-4 font-bold text-gray-600">Patients</th>
+                                            <th className="text-right p-4 font-bold text-gray-600">Rev/Patient</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {monthlyFinancialTrend.map((item, idx) => (
+                                            <tr key={idx} className="border-b border-gray-100 hover:bg-blue-50 transition-colors">
+                                                <td className="p-4 font-semibold text-gray-900">{item.month}</td>
+                                                <td className="p-4 text-right font-medium">Rs. {(item.revenue).toLocaleString()}K</td>
+                                                <td className="p-4 text-right text-gray-600">Rs. {(item.cost).toLocaleString()}K</td>
+                                                <td className="p-4 text-right">
+                                                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded font-bold text-sm">
+                                                        {item.margin}%
+                                                    </span>
+                                                </td>
+                                                <td className="p-4 text-right text-gray-600">{item.patients}</td>
+                                                <td className="p-4 text-right font-bold text-blue-600">
+                                                    Rs. {Math.round((item.revenue * 1000) / item.patients).toLocaleString()}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         {/* Payer Mix Revenue */}
                         <div className="grid grid-cols-3 gap-6">
                             <div className="col-span-2 bg-white rounded-2xl shadow-premium p-8">
