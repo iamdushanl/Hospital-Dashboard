@@ -1,0 +1,27 @@
+{
+  "source": "data/sample_deid.csv",
+  "num_samples": 200,
+  "num_features": 11,
+  "features": [
+    "age",
+    "lab_value",
+    "gender_m",
+    "gender_f",
+    "diag_n18",
+    "diag_r07",
+    "diag_g47",
+    "diag_j18",
+    "diag_other",
+    "age_squared",
+    "lab_normalized"
+  ],
+  "target": "outcome_readmit",
+  "train_size": 140,
+  "val_size": 30,
+  "test_size": 30,
+  "splits": {
+    "train": "data/processed/train.parquet",
+    "val": "data/processed/val.parquet",
+    "test": "data/processed/test.parquet"
+  }
+}
