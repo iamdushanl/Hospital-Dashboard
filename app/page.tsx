@@ -339,23 +339,23 @@ export default function ComprehensiveHospitalDashboard() {
                                 <table className="w-full">
                                     <thead className="bg-gray-100">
                                         <tr>
-                                            <th className="p-3 text-left">Month</th>
-                                            <th className="p-3 text-right">Revenue</th>
-                                            <th className="p-3 text-right">Cost</th>
-                                            <th className="p-3 text-right">Margin %</th>
-                                            <th className="p-3 text-right">Patients</th>
-                                            <th className="p-3 text-right">Rev/Patient</th>
+                                            <th className="p-3 text-left text-gray-900">Month</th>
+                                            <th className="p-3 text-right text-gray-900">Revenue</th>
+                                            <th className="p-3 text-right text-gray-900">Cost</th>
+                                            <th className="p-3 text-right text-gray-900">Margin %</th>
+                                            <th className="p-3 text-right text-gray-900">Patients</th>
+                                            <th className="p-3 text-right text-gray-900">Rev/Patient</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {monthlyRevenue.slice(-6).map((row, idx) => (
                                             <tr key={idx} className="border-b hover:bg-gray-50">
-                                                <td className="p-3 font-semibold">{row.month}</td>
-                                                <td className="p-3 text-right">LKR {(row.revenue / 1000).toFixed(0)}K</td>
-                                                <td className="p-3 text-right">LKR {(row.cost / 1000).toFixed(0)}K</td>
+                                                <td className="p-3 font-semibold text-gray-900">{row.month}</td>
+                                                <td className="p-3 text-right text-gray-900">LKR {(row.revenue / 1000).toFixed(0)}K</td>
+                                                <td className="p-3 text-right text-gray-900">LKR {(row.cost / 1000).toFixed(0)}K</td>
                                                 <td className="p-3 text-right font-semibold text-green-600">{row.margin}%</td>
-                                                <td className="p-3 text-right">{row.patients}</td>
-                                                <td className="p-3 text-right">LKR {((row.revenue * 1000) / row.patients).toFixed(0)}</td>
+                                                <td className="p-3 text-right text-gray-900">{row.patients}</td>
+                                                <td className="p-3 text-right text-gray-900">LKR {((row.revenue * 1000) / row.patients).toFixed(0)}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -518,26 +518,26 @@ export default function ComprehensiveHospitalDashboard() {
                             <table className="w-full">
                                 <thead className="bg-gray-100">
                                     <tr>
-                                        <th className="p-3 text-left">Ward</th>
-                                        <th className="p-3 text-right">Capacity</th>
-                                        <th className="p-3 text-right">Occupied</th>
-                                        <th className="p-3 text-right">Utilization</th>
-                                        <th className="p-3 text-right">Avg LOS</th>
-                                        <th className="p-3 text-left">Status</th>
+                                        <th className="p-3 text-left text-gray-900">Ward</th>
+                                        <th className="p-3 text-right text-gray-900">Capacity</th>
+                                        <th className="p-3 text-right text-gray-900">Occupied</th>
+                                        <th className="p-3 text-right text-gray-900">Utilization</th>
+                                        <th className="p-3 text-right text-gray-900">Avg LOS</th>
+                                        <th className="p-3 text-left text-gray-900">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {bedUtilization.map((ward, idx) => (
                                         <tr key={idx} className="border-b hover:bg-gray-50">
-                                            <td className="p-3 font-semibold">{ward.ward}</td>
-                                            <td className="p-3 text-right">{ward.capacity}</td>
-                                            <td className="p-3 text-right">{ward.occupied}</td>
+                                            <td className="p-3 font-semibold text-gray-900">{ward.ward}</td>
+                                            <td className="p-3 text-right text-gray-900">{ward.capacity}</td>
+                                            <td className="p-3 text-right text-gray-900">{ward.occupied}</td>
                                             <td className="p-3 text-right">
                                                 <span className={`font-semibold ${ward.utilization > 90 ? 'text-red-600' : ward.utilization > 80 ? 'text-green-600' : 'text-blue-600'}`}>
                                                     {ward.utilization}%
                                                 </span>
                                             </td>
-                                            <td className="p-3 text-right">{ward.avgLOS}d</td>
+                                            <td className="p-3 text-right text-gray-900">{ward.avgLOS}d</td>
                                             <td className="p-3">
                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${ward.utilization > 90 ? 'bg-red-100 text-red-800' : ward.utilization > 75 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
                                                     {ward.utilization > 90 ? '⚠ High' : ward.utilization > 75 ? '✓ Optimal' : '→ Low'}
@@ -600,26 +600,26 @@ export default function ComprehensiveHospitalDashboard() {
                             <table className="w-full">
                                 <thead className="bg-gray-100">
                                     <tr>
-                                        <th className="p-3 text-left">Department</th>
-                                        <th className="p-3 text-right">Current Nurses</th>
-                                        <th className="p-3 text-right">Required</th>
-                                        <th className="p-3 text-right">Gap</th>
-                                        <th className="p-3 text-right">Overtime (hrs/week)</th>
-                                        <th className="p-3 text-left">Action</th>
+                                        <th className="p-3 text-left text-gray-900">Department</th>
+                                        <th className="p-3 text-right text-gray-900">Current Nurses</th>
+                                        <th className="p-3 text-right text-gray-900">Required</th>
+                                        <th className="p-3 text-right text-gray-900">Gap</th>
+                                        <th className="p-3 text-right text-gray-900">Overtime (hrs/week)</th>
+                                        <th className="p-3 text-left text-gray-900">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {staffingLevels.map((dept, idx) => (
                                         <tr key={idx} className="border-b hover:bg-gray-50">
-                                            <td className="p-3 font-semibold">{dept.dept}</td>
-                                            <td className="p-3 text-right">{dept.nurses}</td>
-                                            <td className="p-3 text-right">{dept.required}</td>
+                                            <td className="p-3 font-semibold text-gray-900">{dept.dept}</td>
+                                            <td className="p-3 text-right text-gray-900">{dept.nurses}</td>
+                                            <td className="p-3 text-right text-gray-900">{dept.required}</td>
                                             <td className="p-3 text-right">
                                                 <span className={`font-semibold ${dept.gap < 0 ? 'text-red-600' : 'text-green-600'}`}>
                                                     {dept.gap}
                                                 </span>
                                             </td>
-                                            <td className="p-3 text-right">
+                                            <td className="p-3 text-right text-gray-900">
                                                 <span className={dept.overtime > 40 ? 'text-red-600 font-semibold' : ''}>{dept.overtime}</span>
                                             </td>
                                             <td className="p-3">
