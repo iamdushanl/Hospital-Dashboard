@@ -55,6 +55,7 @@ export default function ComprehensiveDashboard() {
         { id: 'patients', label: '👥 Patient Analytics', desc: 'Demographics & satisfaction' },
         { id: 'workforce', label: '👨‍⚕️ Workforce', desc: 'Staff productivity & metrics' },
         { id: 'resources', label: '🔧 Resource Utilization', desc: 'Beds, ORs & equipment' },
+        { id: 'predictive', label: '🔮 Predictive Analytics', desc: 'Forecasts & AI insights' },
     ]
 
 
@@ -243,37 +244,7 @@ export default function ComprehensiveDashboard() {
                             </div>
                         </div>
 
-                        {/*Predictive Forecast */}
-                        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 text-white shadow-premium">
-                            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                                <span className="text-4xl">🔮</span>
-                                30-Day Predictive Forecast
-                            </h2>
-                            <div className="grid grid-cols-3 gap-6">
-                                {Object.entries(forecast30Days).map(([key, data], idx) => (
-                                    <div key={idx} className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                                        <div className="text-sm opacity-90 mb-2">{key.replace(/([A-Z])/g, ' $1').toUpperCase()}</div>
-                                        <div className="flex items-end gap-3 mb-3">
-                                            <div className="text-3xl font-bold">
-                                                {key.includes('revenue') || key.includes('cost')
-                                                    ? `Rs. ${(data.predicted / 1000).toFixed(0)}K`
-                                                    : data.predicted}
-                                            </div>
-                                            <div className={`text-lg font-semibold ${data.change > 0 ? 'text-green-300' : 'text-red-300'}`}>
-                                                {data.change > 0 ? '↑' : '↓'} {Math.abs(data.change).toFixed(1)}%
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-between text-sm">
-                                            <span className="opacity-75">Confidence:</span>
-                                            <span className="font-semibold">{data.confidence}%</span>
-                                        </div>
-                                        <div className="w-full bg-white/20 rounded-full h-2 mt-2">
-                                            <div className="bg-green-400 h-2 rounded-full" style={{ width: `${data.confidence}%` }}></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+
 
                         {/* 12-Month Financial Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
@@ -857,6 +828,63 @@ export default function ComprehensiveDashboard() {
                 {activeTab === 'patients' && <PatientDemographics />}
                 {activeTab === 'workforce' && <StaffProductivity />}
                 {activeTab === 'resources' && <ResourceUtilization />}
+                {activeTab === 'predictive' && (
+                    <div className="space-y-6 slide-in">
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow-premium">
+                            <h2 className="text-3xl font-bold mb-2">Predictive Analytics & Forecasting</h2>
+                            <p className="text-indigo-100">AI-driven insights for strategic planning</p>
+                        </div>
+
+                        {/* Predictive Forecast */}
+                        <div className="bg-white rounded-2xl shadow-premium p-8">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                <span className="text-3xl">🔮</span>
+                                30-Day Hospitality Forecast
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {Object.entries(forecast30Days).map(([key, data], idx) => (
+                                    <div key={idx} className="bg-gray-50 rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all">
+                                        <div className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">{key.replace(/([A-Z])/g, ' $1')}</div>
+                                        <div className="flex items-end gap-3 mb-4">
+                                            <div className="text-3xl font-bold text-gray-900">
+                                                {key.includes('revenue') || key.includes('cost')
+                                                    ? `Rs. ${(data.predicted / 1000).toFixed(0)}K`
+                                                    : data.predicted}
+                                            </div>
+                                            <div className={`text-sm font-bold px-2 py-1 rounded-full ${data.change > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                                {data.change > 0 ? '↑' : '↓'} {Math.abs(data.change).toFixed(1)}%
+                                            </div>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-xs text-gray-600">
+                                                <span>AI Confidence</span>
+                                                <span className="font-bold">{data.confidence}%</span>
+                                            </div>
+                                            <div className="w-full bg-gray-200 rounded-full h-1.5">
+                                                <div
+                                                    className={`h-1.5 rounded-full ${data.confidence > 90 ? 'bg-green-500' : data.confidence > 75 ? 'bg-blue-500' : 'bg-yellow-500'}`}
+                                                    style={{ width: `${data.confidence}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                            <div className="flex gap-4">
+                                <div className="text-4xl">💡</div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-blue-900">AI Strategic Insight</h3>
+                                    <p className="text-blue-800 mt-1">
+                                        Projected 12% increase in patient volume over the next 30 days suggests a need to increase nursing staff levels in the Emergency Department by 2 FTEs during weekend shifts.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Prismo AI Assistant - The Chat Above All Charts */}
