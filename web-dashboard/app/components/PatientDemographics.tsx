@@ -13,31 +13,31 @@ export default function PatientDemographics() {
         <div className="space-y-6">
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl p-6 shadow-lg">
-                <h2 className="text-3xl font-bold">Patient Demographics & Population Analytics</h2>
-                <p className="text-blue-100 mt-2">Understanding your patient population for better service planning</p>
+                <h2 className="text-3xl font-bold">Patient Analytics Dashboard</h2>
+                <p className="text-blue-100 mt-2">Comprehensive demographic insights and population health trends</p>
             </div>
 
-            {/* Summary Cards */}
+            {/* Key Metrics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
-                    <div className="text-sm text-gray-600 mb-1">Total Patients (90 days)</div>
-                    <div className="text-3xl font-bold text-gray-900">1,000</div>
-                    <div className="text-sm text-green-600 mt-2">↑ 12% vs previous quarter</div>
+                    <div className="text-sm text-gray-600 mb-1">Total Patients</div>
+                    <div className="text-3xl font-bold text-gray-900">1,245</div>
+                    <div className="text-sm text-green-600 mt-2">↑ 12% vs last month</div>
+                </div>
+                <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-indigo-500">
+                    <div className="text-sm text-gray-600 mb-1">Average Age</div>
+                    <div className="text-3xl font-bold text-gray-900">48.2</div>
+                    <div className="text-sm text-gray-600 mt-2">Years old</div>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-purple-500">
-                    <div className="text-sm text-gray-600 mb-1">Average Age</div>
-                    <div className="text-3xl font-bold text-gray-900">48.5 yrs</div>
-                    <div className="text-sm text-gray-600 mt-2">Median: 46 years</div>
+                    <div className="text-sm text-gray-600 mb-1">Gender Ratio</div>
+                    <div className="text-3xl font-bold text-gray-900">45:55</div>
+                    <div className="text-sm text-gray-600 mt-2">Male : Female</div>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-pink-500">
-                    <div className="text-sm text-gray-600 mb-1">Gender Split</div>
-                    <div className="text-3xl font-bold text-gray-900">52% / 48%</div>
-                    <div className="text-sm text-gray-600 mt-2">Female / Male</div>
-                </div>
-                <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
-                    <div className="text-sm text-gray-600 mb-1">Medical Tourism</div>
-                    <div className="text-3xl font-bold text-gray-900">89</div>
-                    <div className="text-sm text-green-600 mt-2">↑ 18% growth YoY</div>
+                    <div className="text-sm text-gray-600 mb-1">Readmission Risk</div>
+                    <div className="text-3xl font-bold text-gray-900">14.2%</div>
+                    <div className="text-sm text-red-600 mt-2">↑ 1.2% moderate risk</div>
                 </div>
             </div>
 
@@ -148,8 +148,8 @@ export default function PatientDemographics() {
                                     <td className="p-3 text-right">Rs. {item.cost.toLocaleString()}</td>
                                     <td className="p-3 text-center">
                                         <span className={`px-2 py-1 rounded text-xs font-bold ${idx % 3 === 0 ? 'bg-green-100 text-green-800' :
-                                                idx % 3 === 1 ? 'bg-yellow-100 text-yellow-800' :
-                                                    'bg-blue-100 text-blue-800'
+                                            idx % 3 === 1 ? 'bg-yellow-100 text-yellow-800' :
+                                                'bg-blue-100 text-blue-800'
                                             }`}>
                                             {idx % 3 === 0 ? '↑ Rising' : idx % 3 === 1 ? '→ Stable' : '↓ Declining'}
                                         </span>
