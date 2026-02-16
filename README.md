@@ -76,8 +76,17 @@
 
 - **Smart Risk Assessment**: Patient readmission probability scoring
 - **Ensemble Learning**: Combines multiple ML models for accuracy
-- **Feature Importance**: Understand key factors driving predictions
 - **Confidence Intervals**: Transparent uncertainty quantification
+
+### 🤖 Prismo AI Assistant
+- **Context-Aware Chat**: Sits "above all charts" to answer questions about any data point
+- **Instant Insights**: Explains complex metrics in plain English
+- **Strategic Recommendations**: Suggests operational improvements based on trends
+
+### 🔮 Predictive Analytics Tab
+- **30-Day Forecasts**: AI-driven projections for patient volume, revenue, and costs
+- **Strategic Planning**: Dedicated view for long-term decision support
+- **Scenario Analysis**: Visual confidence bands for future planning
 
 ### 🎨 Modern User Experience
 
