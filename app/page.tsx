@@ -21,38 +21,38 @@ export default function ComprehensiveHospitalDashboard() {
     // Colors
     const COLORS = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe', '#43e97b', '#fa709a', '#fee140', '#30cfd0']
 
-    // Mock Data - Financial
+    // Mock Data - Financial (in thousands LKR)
     const monthlyRevenue = [
-        { month: 'Jan', revenue: 2850, cost: 2340, margin: 17.9, patients: 612 },
-        { month: 'Feb', revenue: 2920, cost: 2380, margin: 18.5, patients: 628 },
-        { month: 'Mar', revenue: 3100, cost: 2450, margin: 21.0, patients: 654 },
-        { month: 'Apr', revenue: 3050, cost: 2510, margin: 17.7, patients: 642 },
-        { month: 'May', revenue: 3280, cost: 2590, margin: 21.0, patients: 671 },
-        { month: 'Jun', revenue: 3150, cost: 2620, margin: 16.8, patients: 658 },
-        { month: 'Jul', revenue: 3320, cost: 2650, margin: 20.2, patients: 683 },
-        { month: 'Aug', revenue: 3450, cost: 2710, margin: 21.4, patients: 695 },
-        { month: 'Sep', revenue: 3280, cost: 2730, margin: 16.8, patients: 672 },
-        { month: 'Oct', revenue: 3520, cost: 2780, margin: 21.0, patients: 702 },
-        { month: 'Nov', revenue: 3680, cost: 2850, margin: 22.6, patients: 724 },
-        { month: 'Dec', revenue: 3850, cost: 2920, margin: 24.2, patients: 745 }
+        { month: 'Jan', revenue: 855000, cost: 702000, margin: 17.9, patients: 612 },
+        { month: 'Feb', revenue: 876000, cost: 714000, margin: 18.5, patients: 628 },
+        { month: 'Mar', revenue: 930000, cost: 735000, margin: 21.0, patients: 654 },
+        { month: 'Apr', revenue: 915000, cost: 753000, margin: 17.7, patients: 642 },
+        { month: 'May', revenue: 984000, cost: 777000, margin: 21.0, patients: 671 },
+        { month: 'Jun', revenue: 945000, cost: 786000, margin: 16.8, patients: 658 },
+        { month: 'Jul', revenue: 996000, cost: 795000, margin: 20.2, patients: 683 },
+        { month: 'Aug', revenue: 1035000, cost: 813000, margin: 21.4, patients: 695 },
+        { month: 'Sep', revenue: 984000, cost: 819000, margin: 16.8, patients: 672 },
+        { month: 'Oct', revenue: 1056000, cost: 834000, margin: 21.0, patients: 702 },
+        { month: 'Nov', revenue: 1104000, cost: 855000, margin: 22.6, patients: 724 },
+        { month: 'Dec', revenue: 1155000, cost: 876000, margin: 24.2, patients: 745 }
     ]
 
     const payerMix = [
-        { name: 'Government Insurance', value: 38, revenue: 1462 },
-        { name: 'Private Insurance', value: 32, revenue: 1232 },
-        { name: 'Self-Pay', value: 18, revenue: 693 },
-        { name: 'Medicare', value: 12, revenue: 462 }
+        { name: 'Government Insurance', value: 38, revenue: 438600 },
+        { name: 'Private Insurance', value: 32, revenue: 369600 },
+        { name: 'Self-Pay', value: 18, revenue: 207900 },
+        { name: 'Medicare', value: 12, revenue: 138600 }
     ]
 
     const topServices = [
-        { service: 'Surgery', revenue: 945, patients: 156 },
-        { service: 'Cardiology', revenue: 812, patients: 189 },
-        { service: 'Oncology', revenue: 756, patients: 124 },
-        { service: 'Orthopedics', revenue: 623, patients: 142 },
-        { service: 'Neurology', revenue: 534, patients: 98 },
-        { service: 'Emergency', revenue: 487, patients: 423 },
-        { service: 'Imaging', revenue: 398, patients: 672 },
-        { service: 'Laboratory', revenue: 295, patients: 1243 }
+        { service: 'Surgery', revenue: 283500, patients: 156 },
+        { service: 'Cardiology', revenue: 243600, patients: 189 },
+        { service: 'Oncology', revenue: 226800, patients: 124 },
+        { service: 'Orthopedics', revenue: 186900, patients: 142 },
+        { service: 'Neurology', revenue: 160200, patients: 98 },
+        { service: 'Emergency', revenue: 146100, patients: 423 },
+        { service: 'Imaging', revenue: 119400, patients: 672 },
+        { service: 'Laboratory', revenue: 88500, patients: 1243 }
     ]
 
     // Clinical Quality Data
@@ -113,11 +113,11 @@ export default function ComprehensiveHospitalDashboard() {
 
     // Workforce Data
     const doctorProductivity = [
-        { name: 'Dr. Silva', patients: 28, revenue: 145, satisfaction: 93 },
-        { name: 'Dr. Perera', patients: 26, revenue: 138, satisfaction: 91 },
-        { name: 'Dr. Fernando', patients: 24, revenue: 125, satisfaction: 89 },
-        { name: 'Dr. Jayawardena', patients: 23, revenue: 118, satisfaction: 88 },
-        { name: 'Dr. Wickramasinghe', patients: 22, revenue: 112, satisfaction: 90 }
+        { name: 'Dr. Silva', patients: 28, revenue: 43500, satisfaction: 93 },
+        { name: 'Dr. Perera', patients: 26, revenue: 41400, satisfaction: 91 },
+        { name: 'Dr. Fernando', patients: 24, revenue: 37500, satisfaction: 89 },
+        { name: 'Dr. Jayawardena', patients: 23, revenue: 35400, satisfaction: 88 },
+        { name: 'Dr. Wickramasinghe', patients: 22, revenue: 33600, satisfaction: 90 }
     ]
 
     const staffingLevels = [
@@ -130,7 +130,7 @@ export default function ComprehensiveHospitalDashboard() {
     // Predictive Analytics
     const predictions = {
         admissions: { current: 672, predicted: 718, confidence: 94, change: 6.8 },
-        revenue: { current: 3850, predicted: 4120, confidence: 91, change: 7.0 },
+        revenue: { current: 1155000, predicted: 1236000, confidence: 91, change: 7.0 },
         occupancy: { current: 78, predicted: 84, confidence: 89, change: 7.7 },
         erVisits: { current: 1243, predicted: 1356, confidence: 87, change: 9.1 }
     }
@@ -185,8 +185,8 @@ export default function ComprehensiveHospitalDashboard() {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-4 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
-                                        ? 'border-b-4 border-blue-600 text-blue-600 bg-blue-50'
-                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                    ? 'border-b-4 border-blue-600 text-blue-600 bg-blue-50'
+                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                                     }`}
                             >
                                 <span className="mr-2">{tab.icon}</span>
@@ -208,7 +208,7 @@ export default function ComprehensiveHospitalDashboard() {
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div className="bg-gradient-to-br from-green-400 to-green-600 text-white p-6 rounded-xl shadow-lg">
                                 <div className="text-sm opacity-90">Monthly Revenue</div>
-                                <div className="text-4xl font-bold mt-2">$3.85M</div>
+                                <div className="text-4xl font-bold mt-2">LKR 1.16M</div>
                                 <div className="text-sm mt-2">↑ +24.2% vs last month</div>
                             </div>
                             <div className="bg-gradient-to-br from-blue-400 to-blue-600 text-white p-6 rounded-xl shadow-lg">
@@ -245,7 +245,7 @@ export default function ComprehensiveHospitalDashboard() {
                                         <YAxis />
                                         <Tooltip />
                                         <Legend />
-                                        <Area type="monotone" dataKey="revenue" stroke="#667eea" fillOpacity={1} fill="url(#colorRev)" name="Revenue ($K)" />
+                                        <Area type="monotone" dataKey="revenue" stroke="#667eea" fillOpacity={1} fill="url(#colorRev)" name="Revenue (K LKR)" />
                                         <Line type="monotone" dataKey="margin" stroke="#10b981" strokeWidth={2} name="Margin (%)" />
                                     </AreaChart>
                                 </ResponsiveContainer>
@@ -267,7 +267,7 @@ export default function ComprehensiveHospitalDashboard() {
                                     </PieChart>
                                 </ResponsiveContainer>
                                 <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Opportunity:</strong> Government insurance 38% - negotiate better rates for +$180K/yr.</p>
+                                    <p className="text-sm text-gray-700"><strong>Opportunity:</strong> Government insurance 38% - negotiate better rates for +LKR 54M/yr.</p>
                                 </div>
                             </div>
                         </div>
@@ -305,11 +305,11 @@ export default function ComprehensiveHospitalDashboard() {
                                         <YAxis dataKey="service" type="category" width={100} />
                                         <Tooltip />
                                         <Legend />
-                                        <Bar dataKey="revenue" fill="#667eea" name="Revenue ($K)" />
+                                        <Bar dataKey="revenue" fill="#667eea" name="Revenue (K LKR)" />
                                     </BarChart>
                                 </ResponsiveContainer>
                                 <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Actionable:</strong> Surgery generates $945K. Increase OR capacity to boost by 15% = +$142K/month.</p>
+                                    <p className="text-sm text-gray-700"><strong>Actionable:</strong> Surgery generates LKR 283.5K. Increase OR capacity to boost by 15% = +LKR 42.5K/month.</p>
                                 </div>
                             </div>
 
@@ -322,8 +322,8 @@ export default function ComprehensiveHospitalDashboard() {
                                         <YAxis />
                                         <Tooltip />
                                         <Legend />
-                                        <Line type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} name="Revenue ($K)" />
-                                        <Line type="monotone" dataKey="cost" stroke="#ef4444" strokeWidth={3} name="Cost ($K)" />
+                                        <Line type="monotone" dataKey="revenue" stroke="#10b981" strokeWidth={3} name="Revenue (K LKR)" />
+                                        <Line type="monotone" dataKey="cost" stroke="#ef4444" strokeWidth={3} name="Cost (K LKR)" />
                                     </LineChart>
                                 </ResponsiveContainer>
                                 <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
@@ -351,11 +351,11 @@ export default function ComprehensiveHospitalDashboard() {
                                         {monthlyRevenue.slice(-6).map((row, idx) => (
                                             <tr key={idx} className="border-b hover:bg-gray-50">
                                                 <td className="p-3 font-semibold">{row.month}</td>
-                                                <td className="p-3 text-right">${(row.revenue).toFixed(0)}K</td>
-                                                <td className="p-3 text-right">${(row.cost).toFixed(0)}K</td>
+                                                <td className="p-3 text-right">LKR {(row.revenue / 1000).toFixed(0)}K</td>
+                                                <td className="p-3 text-right">LKR {(row.cost / 1000).toFixed(0)}K</td>
                                                 <td className="p-3 text-right font-semibold text-green-600">{row.margin}%</td>
                                                 <td className="p-3 text-right">{row.patients}</td>
-                                                <td className="p-3 text-right">${((row.revenue * 1000) / row.patients).toFixed(0)}</td>
+                                                <td className="p-3 text-right">LKR {((row.revenue * 1000) / row.patients).toFixed(0)}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -396,7 +396,7 @@ export default function ComprehensiveHospitalDashboard() {
                                     </BarChart>
                                 </ResponsiveContainer>
                                 <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Critical:</strong> Heart failure readmission 18.5%. Deploy care coordination team - save $420K/yr.</p>
+                                    <p className="text-sm text-gray-700"><strong>Critical:</strong> Heart failure readmission 18.5%. Deploy care coordination team - save LKR 126M/yr.</p>
                                 </div>
                             </div>
 
@@ -567,11 +567,11 @@ export default function ComprehensiveHospitalDashboard() {
                                         <Tooltip />
                                         <Legend />
                                         <Bar dataKey="patients" fill="#3b82f6" name="Patients/Day" />
-                                        <Bar dataKey="revenue" fill="#10b981" name="Revenue ($K)" />
+                                        <Bar dataKey="revenue" fill="#10b981" name="Revenue (K LKR)" />
                                     </BarChart>
                                 </ResponsiveContainer>
                                 <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Top Performer:</strong> Dr. Silva sees 28 patients/day, $145K revenue, 93% satisfaction.</p>
+                                    <p className="text-sm text-gray-700"><strong>Top Performer:</strong> Dr. Silva sees 28 patients/day, LKR 43.5K revenue, 93% satisfaction.</p>
                                 </div>
                             </div>
 
@@ -706,7 +706,7 @@ export default function ComprehensiveHospitalDashboard() {
                                         <div className="flex justify-between items-center">
                                             <div>
                                                 <div className="text-sm text-gray-600">Predicted Revenue</div>
-                                                <div className="text-3xl font-bold text-green-600">$4.12M</div>
+                                                <div className="text-3xl font-bold text-green-600">LKR 1.24M</div>
                                             </div>
                                             <div className="text-right">
                                                 <div className="text-green-600 font-semibold">+7.0%</div>
