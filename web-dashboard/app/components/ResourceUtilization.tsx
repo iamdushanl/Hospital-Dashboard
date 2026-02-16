@@ -37,7 +37,7 @@ export default function ResourceUtilization() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-red-500">
                     <div className="text-sm text-gray-600 mb-1">Consumables Waste</div>
                     <div className="text-3xl font-bold text-gray-900">4.2%</div>
-                    <div className="text-sm text-red-600 mt-2">Target: < 3%</div>
+                    <div className="text-sm text-red-600 mt-2">Target: &lt; 3%</div>
                 </div>
             </div>
 
@@ -70,8 +70,8 @@ export default function ResourceUtilization() {
                                                 <div className="w-24 bg-gray-200 rounded-full h-2">
                                                     <div
                                                         className={`h-2 rounded-full ${utilization >= 85 ? 'bg-green-500' :
-                                                                utilization >= 70 ? 'bg-yellow-500' :
-                                                                    'bg-red-500'
+                                                            utilization >= 70 ? 'bg-yellow-500' :
+                                                                'bg-red-500'
                                                             }`}
                                                         style={{ width: `${utilization}%` }}
                                                     ></div>
@@ -89,8 +89,8 @@ export default function ResourceUtilization() {
                                         </td>
                                         <td className="p-3 text-center">
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${utilization >= 85 && ward.blockedBeds === 0 ? 'bg-green-100 text-green-800' :
-                                                    utilization >= 70 ? 'bg-yellow-100 text-yellow-800' :
-                                                        'bg-red-100 text-red-800'
+                                                utilization >= 70 ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-red-100 text-red-800'
                                                 }`}>
                                                 {utilization >= 85 && ward.blockedBeds === 0 ? '✓ Optimal' :
                                                     utilization >= 70 ? '→ Fair' : '⚠ Low'}
@@ -176,8 +176,8 @@ export default function ResourceUtilization() {
                                             <div className="w-32 bg-gray-200 rounded-full h-3">
                                                 <div
                                                     className={`h-3 rounded-full ${equip.utilization >= equip.target ? 'bg-green-500' :
-                                                            equip.utilization >= equip.target * 0.9 ? 'bg-yellow-500' :
-                                                                'bg-red-500'
+                                                        equip.utilization >= equip.target * 0.9 ? 'bg-yellow-500' :
+                                                            'bg-red-500'
                                                         }`}
                                                     style={{ width: `${equip.utilization}%` }}
                                                 ></div>
@@ -196,8 +196,8 @@ export default function ResourceUtilization() {
                                     </td>
                                     <td className="p-3 text-center">
                                         <span className={`px-3 py-1 rounded-full text-xs font-bold ${equip.utilization >= equip.target ? 'bg-green-100 text-green-800' :
-                                                equip.utilization >= equip.target * 0.9 ? 'bg-yellow-100 text-yellow-800' :
-                                                    'bg-red-100 text-red-800'
+                                            equip.utilization >= equip.target * 0.9 ? 'bg-yellow-100 text-yellow-800' :
+                                                'bg-red-100 text-red-800'
                                             }`}>
                                             {equip.utilization >= equip.target ? '✓ Meeting Target' :
                                                 equip.utilization >= equip.target * 0.9 ? '→ Near Target' : '⚠ Below Target'}
@@ -267,7 +267,7 @@ export default function ResourceUtilization() {
                         <span className="text-2xl">🛏️</span>
                         <div>
                             <p className="font-semibold text-gray-900">Increase Bed Utilization</p>
-                            <p className="text-sm text-gray-700">Target Orthopedics and Pediatrics for marketing. Reduce bed turnover time from 2.3hrs to < 2hrs.</p>
+                            <p className="text-sm text-gray-700">Target Orthopedics and Pediatrics for marketing. Reduce bed turnover time from 2.3hrs to &lt; 2hrs.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -288,7 +288,7 @@ export default function ResourceUtilization() {
                         <span className="text-2xl">💰</span>
                         <div>
                             <p className="font-semibold text-gray-900">Cost Reduction</p>
-                            <p className="text-sm text-gray-700">Reduce consumables waste from 4.8% to < 3% = Rs. 240K savings/month. Focus on high-waste items.</p>
+                            <p className="text-sm text-gray-700">Reduce consumables waste from 4.8% to &lt; 3% = Rs. 240K savings/month. Focus on high-waste items.</p>
                         </div>
                     </div>
                 </div>
