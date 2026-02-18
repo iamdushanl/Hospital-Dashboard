@@ -42,7 +42,8 @@ export default function StaffProductivity() {
 
             {/* Doctor Productivity Leaderboard */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🏆 Doctor Productivity Leaderboard</h3>
+                <h3 className="text-xl font-bold text-gray-900">🏆 Doctor Productivity Leaderboard</h3>
+                <p className="text-sm text-gray-500 mb-4">Performance metrics by doctor including patients/day and revenue</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
@@ -116,7 +117,8 @@ export default function StaffProductivity() {
 
             {/* Nursing Workforce Metrics */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">👩‍⚕️ Nursing Workforce by Department</h3>
+                <h3 className="text-xl font-bold text-gray-900">👩‍⚕️ Nursing Workforce by Department</h3>
+                <p className="text-sm text-gray-500 mb-4">Staffing levels and nurse-to-patient ratios by department</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
@@ -181,7 +183,8 @@ export default function StaffProductivity() {
 
             {/* Staff Turnover Trend */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">📉 Staff Turnover Trend (6 Months)</h3>
+                <h3 className="text-xl font-bold text-gray-900">📉 Staff Turnover Trend (6 Months)</h3>
+                <p className="text-sm text-gray-500 mb-4">6-month trend of staff turnover rates by role</p>
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={staffTurnoverTrend}>
                         <CartesianGrid strokeDasharray="3 3" />

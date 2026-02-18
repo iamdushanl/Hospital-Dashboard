@@ -248,7 +248,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* 12-Month Financial Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">📈 12-Month Financial Performance Trend</h2>
+                            <h2 className="text-2xl font-bold text-gray-900">📈 12-Month Financial Performance Trend</h2>
+                            <p className="text-sm text-gray-500 mb-6">Monthly revenue, cost, and margin performance over the last 12 months</p>
                             <ResponsiveContainer width="100%" height={400}>
                                 <ComposedChart data={monthlyFinancialTrend}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -285,7 +286,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* Risk Stratification */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">⚠️ Patient Risk Stratification & Readmission Management</h2>
+                            <h2 className="text-2xl font-bold text-gray-900">⚠️ Patient Risk Stratification & Readmission Management</h2>
+                            <p className="text-sm text-gray-500 mb-6">Patient distribution by risk level and readmission probability</p>
                             <div className="grid grid-cols-2 gap-6">
                                 <div>
                                     <ResponsiveContainer width="100%" height={300}>
@@ -403,7 +405,8 @@ export default function ComprehensiveDashboard() {
                         {/* Payer Mix Revenue */}
                         <div className="grid grid-cols-3 gap-6">
                             <div className="col-span-2 bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">💳 Revenue by Payer Mix</h3>
+                                <h3 className="text-xl font-bold text-gray-900">💳 Revenue by Payer Mix</h3>
+                                <p className="text-sm text-gray-500 mb-6">Revenue contribution and profit margin by payer category</p>
                                 <ResponsiveContainer width="100%" height={350}>
                                     <BarChart data={payerMixRevenue}>
                                         <CartesianGrid strokeDasharray="3 3" />
@@ -443,7 +446,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* Top DRGs */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">🏥 Top 10 DRGs (Diagnosis Related Groups) by Revenue</h3>
+                            <h3 className="text-xl font-bold text-gray-900">🏥 Top 10 DRGs (Diagnosis Related Groups) by Revenue</h3>
+                            <p className="text-sm text-gray-500 mb-6">Analysis of highest revenue Diagnosis Related Groups</p>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
                                     <thead>
@@ -487,7 +491,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* Cost per Case Benchmarking */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">📊 Cost per Case vs Industry Benchmark</h3>
+                            <h3 className="text-xl font-bold text-gray-900">📊 Cost per Case vs Industry Benchmark</h3>
+                            <p className="text-sm text-gray-500 mb-6">Comparison of average cost per case against industry benchmarks</p>
                             <ResponsiveContainer width="100%" height={400}>
                                 <BarChart data={costPerCase} layout="vertical">
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -543,7 +548,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* Quality Metrics Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">📈 Quality Metrics - 6 Month Trend</h3>
+                            <h3 className="text-xl font-bold text-gray-900">📈 Quality Metrics - 6 Month Trend</h3>
+                            <p className="text-sm text-gray-500 mb-6">Trends in mortality, infection, readmission, and satisfaction rates</p>
                             <ResponsiveContainer width="100%" height={350}>
                                 <LineChart data={qualityTrend}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -562,7 +568,8 @@ export default function ComprehensiveDashboard() {
                         {/* Patient Satisfaction Radar */}
                         <div className="grid grid-cols-2 gap-6">
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">⭐ Patient Satisfaction by Category</h3>
+                                <h3 className="text-xl font-bold text-gray-900">⭐ Patient Satisfaction by Category</h3>
+                                <p className="text-sm text-gray-500 mb-6">Satisfaction scores across key service categories vs benchmarks</p>
                                 <ResponsiveContainer width="100%" height={400}>
                                     <RadarChart data={satisfactionByCategory}>
                                         <PolarGrid />
@@ -604,7 +611,8 @@ export default function ComprehensiveDashboard() {
 
                         {/* Readmission Analysis */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">🔄 30-Day Readmission Analysis by Diagnosis</h3>
+                            <h3 className="text-xl font-bold text-gray-900">🔄 30-Day Readmission Analysis by Diagnosis</h3>
+                            <p className="text-sm text-gray-500 mb-6">30-day readmission rates and cost impact by diagnosis</p>
                             <ResponsiveContainer width="100%" height={350}>
                                 <BarChart data={readmissionByDiagnosis}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -798,7 +806,8 @@ export default function ComprehensiveDashboard() {
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">📊 Severity Distribution</h3>
+                                <h3 className="text-xl font-bold text-gray-900">📊 Severity Distribution</h3>
+                                <p className="text-sm text-gray-500 mb-6">Breakdown of emergency department visits by severity level</p>
                                 <ResponsiveContainer width="100%" height={250}>
                                     <PieChart>
                                         <Pie

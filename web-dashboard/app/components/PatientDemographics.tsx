@@ -45,7 +45,8 @@ export default function PatientDemographics() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Age Distribution Pyramid */}
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">📊 Age & Gender Distribution</h3>
+                    <h3 className="text-xl font-bold text-gray-900">📊 Age & Gender Distribution</h3>
+                    <p className="text-sm text-gray-500 mb-4">Breakdown of patient population by age group and gender</p>
                     <ResponsiveContainer width="100%" height={350}>
                         <BarChart data={ageDistribution} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" />
@@ -66,7 +67,8 @@ export default function PatientDemographics() {
 
                 {/* Insurance Distribution */}
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">🏥 Insurance Mix (Sri Lankan Context)</h3>
+                    <h3 className="text-xl font-bold text-gray-900">🏥 Insurance Mix (Sri Lankan Context)</h3>
+                    <p className="text-sm text-gray-500 mb-4">Distribution of patients by insurance provider type</p>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -102,7 +104,8 @@ export default function PatientDemographics() {
 
             {/* Geographic Distribution */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🗺️ Geographic Distribution (Top 10 Sri Lankan Districts)</h3>
+                <h3 className="text-xl font-bold text-gray-900">🗺️ Geographic Distribution (Top 10 Sri Lankan Districts)</h3>
+                <p className="text-sm text-gray-500 mb-4">Patient count and revenue contribution by district</p>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={geographicDistribution}>
                         <CartesianGrid strokeDasharray="3 3" />

@@ -43,7 +43,8 @@ export default function ResourceUtilization() {
 
             {/* Bed Utilization by Ward */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🛏️ Bed Utilization by Ward</h3>
+                <h3 className="text-xl font-bold text-gray-900">🛏️ Bed Utilization by Ward</h3>
+                <p className="text-sm text-gray-500 mb-4">Occupancy rates and turnover times per ward</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
@@ -112,7 +113,8 @@ export default function ResourceUtilization() {
 
             {/* OR Utilization Heatmap */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🏥 Operating Room Utilization (Hourly)</h3>
+                <h3 className="text-xl font-bold text-gray-900">🏥 Operating Room Utilization (Hourly)</h3>
+                <p className="text-sm text-gray-500 mb-4">Hourly utilization rates for operating rooms</p>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={orUtilizationByHour}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -154,7 +156,8 @@ export default function ResourceUtilization() {
 
             {/* Equipment Utilization */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🔬 Equipment Utilization & Revenue</h3>
+                <h3 className="text-xl font-bold text-gray-900">🔬 Equipment Utilization & Revenue</h3>
+                <p className="text-sm text-gray-500 mb-4">Usage rates and revenue generation for key medical equipment</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
@@ -218,7 +221,8 @@ export default function ResourceUtilization() {
 
             {/* High-Cost Consumables - Pareto Analysis */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">💰 High-Cost Consumables (Pareto Analysis)</h3>
+                <h3 className="text-xl font-bold text-gray-900">💰 High-Cost Consumables (Pareto Analysis)</h3>
+                <p className="text-sm text-gray-500 mb-4">Analysis of high-cost items and waste rates</p>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={highCostConsumables}>
                         <CartesianGrid strokeDasharray="3 3" />
