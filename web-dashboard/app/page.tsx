@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import PatientDemographics from './components/PatientDemographics'
 import StaffProductivity from './components/StaffProductivity'
 import ResourceUtilization from './components/ResourceUtilization'
-import PrismoChatbot from './components/PrismoChatbot'
+
 import {
     monthlyFinancialTrend,
     qualityTrend,
@@ -887,8 +887,7 @@ export default function ComprehensiveDashboard() {
                 )}
             </div>
 
-            {/* Prismo AI Assistant - The Chat Above All Charts */}
-            <PrismoChatbot />
+
         </div>
     )
 }

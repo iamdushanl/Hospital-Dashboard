@@ -78,10 +78,6 @@
 - **Ensemble Learning**: Combines multiple ML models for accuracy
 - **Confidence Intervals**: Transparent uncertainty quantification
 
-### 🤖 Prismo AI Assistant
-- **Context-Aware Chat**: Sits "above all charts" to answer questions about any data point
-- **Instant Insights**: Explains complex metrics in plain English
-- **Strategic Recommendations**: Suggests operational improvements based on trends
 
 ### 🔮 Predictive Analytics Tab
 - **30-Day Forecasts**: AI-driven projections for patient volume, revenue, and costs
