@@ -236,7 +236,7 @@ Distributed under the MIT License. See [`LICENSE`](LICENSE) for details.
 
 **Dushan L**
 - GitHub: [@iamdushanl](https://github.com/iamdushanl)
-- LinkedIn: [Connect with me](https://linkedin.com/in/your-handle)
+- LinkedIn: [Connect with me](https://www.linkedin.com/in/dushan-liyanage/)
 
 ---
 
