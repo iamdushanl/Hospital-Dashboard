@@ -1,5 +1,5 @@
-# 🏥 Hospital Analytics Dashboard
-### AI-Powered Healthcare Insights & Patient Readmission Prediction
+# 🏥 Hospital Management Intelligence Dashboard
+### Real-Time Analytics • Predictive Insights • Strategic Decision Support
 
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=nextdotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)
@@ -7,7 +7,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-black?style=flat-square&logo=vercel)
 
-> A production-ready healthcare analytics platform that combines ensemble machine learning with a modern web interface — built to help clinical teams make faster, data-informed decisions.
+> A production-ready hospital operations platform combining ensemble machine learning with a modern web interface — giving clinical and administrative teams a single, intelligent view of their entire operation.
 
 🔗 **[Live Demo](https://hospital-dashboard-blush.vercel.app)** · [Report a Bug](https://github.com/iamdushanl/Hospital-Dashboard/issues) · [Request a Feature](https://github.com/iamdushanl/Hospital-Dashboard/issues)
 
@@ -17,42 +17,67 @@
 
 ![Hospital Management Intelligence Dashboard](Dashboard_preview.png)
 
-> Real-Time Analytics • Predictive Insights • Strategic Decision Support
-
 ---
 
 ## 🎯 What It Does
 
-Hospital Analytics Dashboard gives healthcare professionals a single, intelligent view of patient data. At its core it predicts **30-day readmission risk** using an ensemble of state-of-the-art ML models, while surfacing real-time metrics, interactive visualizations, and a forward-looking predictive analytics tab.
+This isn't just a prediction model — it's a **complete hospital management intelligence platform** across 8 specialized tabs, designed to support both real-time clinical decisions and long-term strategic planning.
 
-Key outcomes it supports:
-- Identifying high-risk patients before discharge
-- Tracking department load, OPD visits, and occupancy in real time
-- 30-day forecasting of patient volume, costs, and revenue for strategic planning
+| Metric | Live Value |
+|---|---|
+| 💰 Monthly Revenue | Rs. 19.2M (+7.3% vs last month) |
+| 📈 Operating Margin | 19.7% (+0.7pts improvement) |
+| 😊 Patient Satisfaction | 88% (+1pt above target) |
+| 🔁 Readmission Rate | 12.0% (-0.3pts improving) |
+| 📊 YoY Revenue Growth | +41.5% |
 
 ---
 
 ## ✨ Features
 
-**📊 Live Analytics**
-- Real-time patient count, readmission rates, and OPD statistics
-- Department occupancy heatmaps and trend charts
-- Time-series analysis with interactive drill-down
+### 📋 Executive Summary
+Critical KPIs at a glance — bed occupancy, ER wait times, ICU availability, active surgeries, and live patient counts updated in real time.
 
-**🤖 AI-Powered Risk Prediction**
-- Patient readmission probability scoring using an ensemble of TabPFN, CatBoost, and XGBoost
-- Confidence intervals for transparent uncertainty quantification
-- Feature-level explainability for clinical teams
+### 💰 Financial Performance
+12-month revenue, cost, and margin trend analysis with interactive charts. Tracks monthly revenue, operating margin, and patient volume in a single view.
 
-**🔮 Predictive Analytics**
-- 30-day AI-driven forecasts for patient volume, revenue, and operational costs
-- Visual confidence bands for scenario planning
+### 🏥 Clinical Quality
+Quality metrics, patient outcomes, and readmission rate monitoring to support continuous clinical improvement.
 
-**🎨 Modern UX**
-- Server-side rendering via Next.js 14 for fast load times
-- Fully responsive — desktop, tablet, and mobile
-- Dark mode support for extended monitoring sessions
-- WCAG 2.1 accessible
+### ⚙️ Operations
+Department efficiency, utilization rates, and workflow analytics to identify and resolve bottlenecks.
+
+### 👥 Patient Analytics
+Full patient risk stratification across 4 tiers with readmission probability and average cost per tier:
+
+| Risk Level | Patients | Readmission Probability | Avg Cost |
+|---|---|---|---|
+| 🔴 Critical Risk | 45 | 28% | Rs. 18,500 |
+| 🟠 High Risk | 128 | 22% | Rs. 12,800 |
+| 🟡 Medium Risk | 312 | 14% | Rs. 7,200 |
+| 🟢 Low Risk | 515 | 5% | Rs. 3,800 |
+
+### 👨‍⚕️ Workforce
+Staff productivity metrics and workforce planning insights.
+
+### 🏗️ Resource Utilization
+Bed management, operating room scheduling, and equipment utilization tracking.
+
+### 🔮 Predictive Analytics
+AI-driven 30-day forecasts for patient volume, revenue, and operational costs — with visual confidence bands for scenario planning.
+
+---
+
+## 📊 Strategic Initiatives Tracker
+
+Built-in ROI-linked initiative tracking with live progress, deadlines, and status:
+
+| Initiative | Status | Progress | ROI |
+|---|---|---|---|
+| Reduce Readmissions (12.3% → 10%) | ✅ On Track | 45% | Rs. 280K |
+| Improve OR Utilization (82 → 90) | ⚠️ At Risk | 35% | Rs. 145K |
+| Increase Patient Satisfaction (87 → 90) | ✅ On Track | 60% | Rs. 95K |
+| Reduce Length of Stay (5.8 → 5 days) | 🔴 Delayed | 25% | Rs. 320K |
 
 ---
 
@@ -98,7 +123,7 @@ Features fed into the models include patient demographics, clinical indicators (
 **Prerequisites:** Node.js 18+, Python 3.11+, npm
 
 ```bash
-# Clone the repo
+# Clone the repository
 git clone https://github.com/iamdushanl/Hospital-Dashboard.git
 cd Hospital-Dashboard
 
