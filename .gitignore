@@ -6,3 +6,4 @@ out
 *.pkl
 *.pyc
 __pycache__
+.env*.local
