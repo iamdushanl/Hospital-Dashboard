@@ -48,14 +48,14 @@ export default function StaffProductivity() {
                     <table className="w-full">
                         <thead>
                             <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                <th className="text-left p-3 font-semibold">Rank</th>
-                                <th className="text-left p-3 font-semibold">Doctor Name</th>
-                                <th className="text-left p-3 font-semibold">Specialty</th>
-                                <th className="text-left p-3 font-semibold">Department</th>
-                                <th className="text-right p-3 font-semibold">Patients/Day</th>
-                                <th className="text-right p-3 font-semibold">Revenue (Rs.)</th>
-                                <th className="text-center p-3 font-semibold">Satisfaction</th>
-                                <th className="text-center p-3 font-semibold">Status</th>
+                                <th className="text-left p-3 font-semibold text-gray-700">Rank</th>
+                                <th className="text-left p-3 font-semibold text-gray-700">Doctor Name</th>
+                                <th className="text-left p-3 font-semibold text-gray-700">Specialty</th>
+                                <th className="text-left p-3 font-semibold text-gray-700">Department</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Patients/Day</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Revenue (Rs.)</th>
+                                <th className="text-center p-3 font-semibold text-gray-700">Satisfaction</th>
+                                <th className="text-center p-3 font-semibold text-gray-700">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,14 +123,14 @@ export default function StaffProductivity() {
                     <table className="w-full">
                         <thead>
                             <tr className="bg-gray-100 border-b-2 border-gray-300">
-                                <th className="text-left p-3 font-semibold">Department</th>
-                                <th className="text-right p-3 font-semibold">Current Nurses</th>
-                                <th className="text-right p-3 font-semibold">Target</th>
-                                <th className="text-center p-3 font-semibold">Staffing Level</th>
-                                <th className="text-right p-3 font-semibold">Nurse:Patient Ratio</th>
-                                <th className="text-right p-3 font-semibold">Overtime (hrs)</th>
-                                <th className="text-right p-3 font-semibold">Turnover %</th>
-                                <th className="text-center p-3 font-semibold">Status</th>
+                                <th className="text-left p-3 font-semibold text-gray-700">Department</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Current Nurses</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Target</th>
+                                <th className="text-center p-3 font-semibold text-gray-700">Staffing Level</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Nurse:Patient Ratio</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Overtime (hrs)</th>
+                                <th className="text-right p-3 font-semibold text-gray-700">Turnover %</th>
+                                <th className="text-center p-3 font-semibold text-gray-700">Status</th>
                             </tr>
                         </thead>
                         <tbody>
