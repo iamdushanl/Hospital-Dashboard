@@ -22,7 +22,7 @@ export default function PatientDemographics() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                     <div className="text-sm text-gray-600 mb-1">Total Patients</div>
                     <div className="text-3xl font-bold text-gray-900">1,245</div>
-                    <div className="text-sm text-green-600 mt-2">↑ 12% vs last month</div>
+                    <div className="text-sm text-green-600 mt-2">12% vs last month</div>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-indigo-500">
                     <div className="text-sm text-gray-600 mb-1">Average Age</div>
@@ -37,7 +37,7 @@ export default function PatientDemographics() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-pink-500">
                     <div className="text-sm text-gray-600 mb-1">Readmission Risk</div>
                     <div className="text-3xl font-bold text-gray-900">14.2%</div>
-                    <div className="text-sm text-red-600 mt-2">↑ 1.2% moderate risk</div>
+                    <div className="text-sm text-red-600 mt-2">1.2% moderate risk increase</div>
                 </div>
             </div>
 
@@ -45,8 +45,9 @@ export default function PatientDemographics() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Age Distribution Pyramid */}
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900">📊 Age & Gender Distribution</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Age & Gender Distribution</h3>
                     <p className="text-sm text-gray-500 mb-4">Breakdown of patient population by age group and gender</p>
+                    <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Patient Age and Gender Distribution</div>
                     <ResponsiveContainer width="100%" height={350}>
                         <BarChart data={ageDistribution} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" />
@@ -67,8 +68,9 @@ export default function PatientDemographics() {
 
                 {/* Insurance Distribution */}
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900">🏥 Insurance Mix (Sri Lankan Context)</h3>
+                    <h3 className="text-xl font-bold text-gray-900">Insurance Mix (Sri Lankan Context)</h3>
                     <p className="text-sm text-gray-500 mb-4">Distribution of patients by insurance provider type</p>
+                    <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Patient Share by Insurance Type</div>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -104,8 +106,9 @@ export default function PatientDemographics() {
 
             {/* Geographic Distribution */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">🗺️ Geographic Distribution (Top 10 Sri Lankan Districts)</h3>
+                <h3 className="text-xl font-bold text-gray-900">Geographic Distribution (Top 10 Sri Lankan Districts)</h3>
                 <p className="text-sm text-gray-500 mb-4">Patient count and revenue contribution by district</p>
+                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Patients and Revenue by District</div>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={geographicDistribution}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -128,7 +131,7 @@ export default function PatientDemographics() {
 
             {/* Top 10 Diagnoses */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">🏥 Top 10 Diagnoses (Case Mix Analysis)</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Top 10 Diagnoses (Case Mix Analysis)</h3>
                 <div className="overflow-x-auto">
                     <table className="w-full">
                         <thead>
@@ -154,7 +157,7 @@ export default function PatientDemographics() {
                                             idx % 3 === 1 ? 'bg-yellow-100 text-yellow-800' :
                                                 'bg-blue-100 text-blue-800'
                                             }`}>
-                                            {idx % 3 === 0 ? '↑ Rising' : idx % 3 === 1 ? '→ Stable' : '↓ Declining'}
+                                            {idx % 3 === 0 ? 'Rising' : idx % 3 === 1 ? 'Stable' : 'Declining'}
                                         </span>
                                     </td>
                                 </tr>
@@ -173,7 +176,7 @@ export default function PatientDemographics() {
             {/* Language & Ethnicity */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">🗣️ Language Preference</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Language Preference</h3>
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between mb-2">
@@ -211,7 +214,7 @@ export default function PatientDemographics() {
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">👥 Nationality Breakdown</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Nationality Breakdown</h3>
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between mb-2">

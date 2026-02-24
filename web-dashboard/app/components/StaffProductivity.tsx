@@ -26,7 +26,7 @@ export default function StaffProductivity() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                     <div className="text-sm text-gray-600 mb-1">Avg Patients/Doctor/Day</div>
                     <div className="text-3xl font-bold text-gray-900">21.3</div>
-                    <div className="text-sm text-green-600 mt-2">↑ 5% efficiency gain</div>
+                    <div className="text-sm text-green-600 mt-2">5% efficiency gain</div>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500">
                     <div className="text-sm text-gray-600 mb-1">Turnover Rate (Annual)</div>
@@ -36,13 +36,13 @@ export default function StaffProductivity() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-red-500">
                     <div className="text-sm text-gray-600 mb-1">Total Overtime Hours</div>
                     <div className="text-3xl font-bold text-gray-900">1,247</div>
-                    <div className="text-sm text-red-600 mt-2">↑ 12% vs last month</div>
+                    <div className="text-sm text-red-600 mt-2">12% vs last month</div>
                 </div>
             </div>
 
             {/* Doctor Productivity Leaderboard */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">🏆 Doctor Productivity Leaderboard</h3>
+                <h3 className="text-xl font-bold text-gray-900">Doctor Productivity Leaderboard</h3>
                 <p className="text-sm text-gray-500 mb-4">Performance metrics by doctor including patients/day and revenue</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -98,8 +98,8 @@ export default function StaffProductivity() {
                                                 doc.satisfaction >= 85 ? 'bg-blue-100 text-blue-800' :
                                                     'bg-yellow-100 text-yellow-800'
                                                 }`}>
-                                                {doc.satisfaction >= 90 && doc.revenue > 100000 ? '⭐ Top Performer' :
-                                                    doc.satisfaction >= 85 ? '✓ Good' : '→ Average'}
+                                                {doc.satisfaction >= 90 && doc.revenue > 100000 ? 'Top Performer' :
+                                                    doc.satisfaction >= 85 ? 'Good' : 'Average'}
                                             </span>
                                         </td>
                                     </tr>
@@ -117,7 +117,7 @@ export default function StaffProductivity() {
 
             {/* Nursing Workforce Metrics */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">👩‍⚕️ Nursing Workforce by Department</h3>
+                <h3 className="text-xl font-bold text-gray-900">Nursing Workforce by Department</h3>
                 <p className="text-sm text-gray-500 mb-4">Staffing levels and nurse-to-patient ratios by department</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -163,8 +163,8 @@ export default function StaffProductivity() {
                                                 staffingPercent >= 85 ? 'bg-yellow-100 text-yellow-800' :
                                                     'bg-red-100 text-red-800'
                                                 }`}>
-                                                {staffingPercent >= 95 && dept.overtimeHours < 100 ? '✓ Optimal' :
-                                                    staffingPercent >= 85 ? '⚠ Understaffed' : '🚨 Critical'}
+                                                {staffingPercent >= 95 && dept.overtimeHours < 100 ? 'Optimal' :
+                                                    staffingPercent >= 85 ? 'Understaffed' : 'Critical'}
                                             </span>
                                         </td>
                                     </tr>
@@ -183,8 +183,9 @@ export default function StaffProductivity() {
 
             {/* Staff Turnover Trend */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">📉 Staff Turnover Trend (6 Months)</h3>
+                <h3 className="text-xl font-bold text-gray-900">Staff Turnover Trend (6 Months)</h3>
                 <p className="text-sm text-gray-500 mb-4">6-month trend of staff turnover rates by role</p>
+                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Staff Turnover Trend by Role</div>
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={staffTurnoverTrend}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -216,24 +217,24 @@ export default function StaffProductivity() {
 
             {/* Key Insights & Actions */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-l-4 border-blue-500">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">💡 Key Insights & Recommended Actions</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Key Insights & Recommended Actions</h3>
                 <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">✅</span>
+                        <span className="text-2xl text-blue-700">1</span>
                         <div>
                             <p className="font-semibold text-gray-900">High Revenue Generators</p>
                             <p className="text-sm text-gray-700">Oncology, Cardiology, and General Surgery drive most revenue. Expand these services.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">⚠️</span>
+                        <span className="text-2xl text-blue-700">2</span>
                         <div>
                             <p className="font-semibold text-gray-900">Staffing Gaps</p>
                             <p className="text-sm text-gray-700">Emergency and ICU need 4-6 additional nurses. High overtime indicates burnout risk.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">📊</span>
+                        <span className="text-2xl text-blue-700">3</span>
                         <div>
                             <p className="font-semibold text-gray-900">Satisfaction Monitoring</p>
                             <p className="text-sm text-gray-700">Dr. Mendis (Emergency) has lowest satisfaction (84%). Conduct feedback session.</p>

@@ -32,7 +32,7 @@ export default function ResourceUtilization() {
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
                     <div className="text-sm text-gray-600 mb-1">Equipment Revenue</div>
                     <div className="text-3xl font-bold text-gray-900">Rs. 2.87M</div>
-                    <div className="text-sm text-green-600 mt-2">↑ 8.5% vs last month</div>
+                    <div className="text-sm text-green-600 mt-2">8.5% vs last month</div>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-red-500">
                     <div className="text-sm text-gray-600 mb-1">Consumables Waste</div>
@@ -43,7 +43,7 @@ export default function ResourceUtilization() {
 
             {/* Bed Utilization by Ward */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">🛏️ Bed Utilization by Ward</h3>
+                <h3 className="text-xl font-bold text-gray-900">Bed Utilization by Ward</h3>
                 <p className="text-sm text-gray-500 mb-4">Occupancy rates and turnover times per ward</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -93,8 +93,8 @@ export default function ResourceUtilization() {
                                                 utilization >= 70 ? 'bg-yellow-100 text-yellow-800' :
                                                     'bg-red-100 text-red-800'
                                                 }`}>
-                                                {utilization >= 85 && ward.blockedBeds === 0 ? '✓ Optimal' :
-                                                    utilization >= 70 ? '→ Fair' : '⚠ Low'}
+                                                {utilization >= 85 && ward.blockedBeds === 0 ? 'Optimal' :
+                                                    utilization >= 70 ? 'Fair' : 'Low'}
                                             </span>
                                         </td>
                                     </tr>
@@ -113,8 +113,9 @@ export default function ResourceUtilization() {
 
             {/* OR Utilization Heatmap */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">🏥 Operating Room Utilization (Hourly)</h3>
+                <h3 className="text-xl font-bold text-gray-900">Operating Room Utilization (Hourly)</h3>
                 <p className="text-sm text-gray-500 mb-4">Hourly utilization rates for operating rooms</p>
+                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Hourly OR Utilization by Operating Room</div>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={orUtilizationByHour}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -156,7 +157,7 @@ export default function ResourceUtilization() {
 
             {/* Equipment Utilization */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">🔬 Equipment Utilization & Revenue</h3>
+                <h3 className="text-xl font-bold text-gray-900">Equipment Utilization & Revenue</h3>
                 <p className="text-sm text-gray-500 mb-4">Usage rates and revenue generation for key medical equipment</p>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -202,8 +203,8 @@ export default function ResourceUtilization() {
                                             equip.utilization >= equip.target * 0.9 ? 'bg-yellow-100 text-yellow-800' :
                                                 'bg-red-100 text-red-800'
                                             }`}>
-                                            {equip.utilization >= equip.target ? '✓ Meeting Target' :
-                                                equip.utilization >= equip.target * 0.9 ? '→ Near Target' : '⚠ Below Target'}
+                                            {equip.utilization >= equip.target ? 'Meeting Target' :
+                                                equip.utilization >= equip.target * 0.9 ? 'Near Target' : 'Below Target'}
                                         </span>
                                     </td>
                                 </tr>
@@ -221,8 +222,9 @@ export default function ResourceUtilization() {
 
             {/* High-Cost Consumables - Pareto Analysis */}
             <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-900">💰 High-Cost Consumables (Pareto Analysis)</h3>
+                <h3 className="text-xl font-bold text-gray-900">High-Cost Consumables (Pareto Analysis)</h3>
                 <p className="text-sm text-gray-500 mb-4">Analysis of high-cost items and waste rates</p>
+                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Consumable Cost and Waste Rate by Item</div>
                 <ResponsiveContainer width="100%" height={350}>
                     <BarChart data={highCostConsumables}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -265,31 +267,31 @@ export default function ResourceUtilization() {
 
             {/* Key Actions */}
             <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border-l-4 border-purple-500">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">🎯 Priority Actions for Resource Optimization</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Priority Actions for Resource Optimization</h3>
                 <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">🛏️</span>
+                        <span className="text-2xl text-purple-700">1</span>
                         <div>
                             <p className="font-semibold text-gray-900">Increase Bed Utilization</p>
                             <p className="text-sm text-gray-700">Target Orthopedics and Pediatrics for marketing. Reduce bed turnover time from 2.3hrs to &lt; 2hrs.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">🏥</span>
+                        <span className="text-2xl text-purple-700">2</span>
                         <div>
                             <p className="font-semibold text-gray-900">OR Efficiency Improvement</p>
                             <p className="text-sm text-gray-700">OR 4 underperforming at 82%. Review first-case-on-time-starts (FCOTS) and surgeon scheduling.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">🔬</span>
+                        <span className="text-2xl text-purple-700">3</span>
                         <div>
                             <p className="font-semibold text-gray-900">Equipment Utilization</p>
                             <p className="text-sm text-gray-700">MRI at 71% - extend hours. Mammography at 65% - run community screening campaigns.</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <span className="text-2xl">💰</span>
+                        <span className="text-2xl text-purple-700">4</span>
                         <div>
                             <p className="font-semibold text-gray-900">Cost Reduction</p>
                             <p className="text-sm text-gray-700">Reduce consumables waste from 4.8% to &lt; 3% = Rs. 240K savings/month. Focus on high-waste items.</p>

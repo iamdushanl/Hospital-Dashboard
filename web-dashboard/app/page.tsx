@@ -48,14 +48,14 @@ export default function ComprehensiveDashboard() {
     }, [])
 
     const tabs = [
-        { id: 'executive', label: '📊 Executive Summary', desc: 'Critical KPIs at a glance' },
-        { id: 'financial', label: '💰 Financial Performance', desc: 'Revenue, costs & profitability' },
-        { id: 'clinical', label: '🏥 Clinical Quality', desc: 'Quality metrics & outcomes' },
-        { id: 'operational', label: '⚙️ Operations', desc: 'Efficiency & utilization' },
-        { id: 'patients', label: '👥 Patient Analytics', desc: 'Demographics & satisfaction' },
-        { id: 'workforce', label: '👨‍⚕️ Workforce', desc: 'Staff productivity & metrics' },
-        { id: 'resources', label: '🔧 Resource Utilization', desc: 'Beds, ORs & equipment' },
-        { id: 'predictive', label: '🔮 Predictive Analytics', desc: 'Forecasts & AI insights' },
+        { id: 'executive', label: 'Executive Summary', desc: 'Critical KPIs at a glance' },
+        { id: 'financial', label: 'Financial Performance', desc: 'Revenue, costs & profitability' },
+        { id: 'clinical', label: 'Clinical Quality', desc: 'Quality metrics & outcomes' },
+        { id: 'operational', label: 'Operations', desc: 'Efficiency & utilization' },
+        { id: 'patients', label: 'Patient Analytics', desc: 'Demographics & satisfaction' },
+        { id: 'workforce', label: 'Workforce', desc: 'Staff productivity & metrics' },
+        { id: 'resources', label: 'Resource Utilization', desc: 'Beds, ORs & equipment' },
+        { id: 'predictive', label: 'Predictive Analytics', desc: 'Forecasts & AI insights' },
     ]
 
 
@@ -67,8 +67,7 @@ export default function ComprehensiveDashboard() {
                 <div className="max-w-[2200px] mx-auto px-8 py-8">
                     <div className="flex items-center justify-between mb-8">
                         <div className="slide-in">
-                            <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
-                                <span className="text-5xl">🏥</span>
+                            <h1 className="text-4xl font-bold mb-2">
                                 Hospital Management Intelligence Dashboard
                             </h1>
                             <p className="text-blue-100 text-lg">
@@ -106,18 +105,18 @@ export default function ComprehensiveDashboard() {
                             <div className="text-blue-100 text-sm mb-1">ER Wait Time</div>
                             <div className="text-3xl font-bold count-up">{realTimeData.emergencyWaitTime} min</div>
                             <div className={`text-sm mt-2 ${realTimeData.emergencyWaitTime > 30 ? 'text-yellow-300' : 'text-green-300'}`}>
-                                {realTimeData.emergencyWaitTime > 30 ? '↑ Above target' : '✓ On target'}
+                                {realTimeData.emergencyWaitTime > 30 ? 'Above target' : 'On target'}
                             </div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
                             <div className="text-blue-100 text-sm mb-1">ICU Beds Available</div>
                             <div className="text-3xl font-bold count-up">{realTimeData.availableICUBeds}</div>
-                            <div className="text-sm text-green-300 mt-2">✓ Capacity available</div>
+                            <div className="text-sm text-green-300 mt-2">Capacity available</div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
                             <div className="text-blue-100 text-sm mb-1">Surgeries In Progress</div>
                             <div className="text-3xl font-bold count-up pulse-animation">{realTimeData.surgeryInProgress}</div>
-                            <div className="text-sm text-blue-200 mt-2">→ Active now</div>
+                            <div className="text-sm text-blue-200 mt-2">Active now</div>
                         </div>
                         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
                             <div className="text-blue-100 text-sm mb-1">Patients in ER</div>
@@ -157,7 +156,7 @@ export default function ComprehensiveDashboard() {
                                 <div className="text-sm font-semibold mb-2 opacity-90">Monthly Revenue</div>
                                 <div className="text-4xl font-bold mb-2">Rs. 19.2M</div>
                                 <div className="flex items-center gap-2 text-sm">
-                                    <span className="bg-white/20 px-2 py-1 rounded">↑ 7.3%</span>
+                                    <span className="bg-white/20 px-2 py-1 rounded">+7.3%</span>
                                     <span>vs last month</span>
                                 </div>
                             </div>
@@ -165,7 +164,7 @@ export default function ComprehensiveDashboard() {
                                 <div className="text-sm font-semibold mb-2 opacity-90">Operating Margin</div>
                                 <div className="text-4xl font-bold mb-2">19.7%</div>
                                 <div className="flex items-center gap-2 text-sm">
-                                    <span className="bg-white/20 px-2 py-1 rounded">↑ 0.7pts</span>
+                                    <span className="bg-white/20 px-2 py-1 rounded">+0.7pts</span>
                                     <span>improvement</span>
                                 </div>
                             </div>
@@ -173,7 +172,7 @@ export default function ComprehensiveDashboard() {
                                 <div className="text-sm font-semibold mb-2 opacity-90">Patient Satisfaction</div>
                                 <div className="text-4xl font-bold mb-2">88%</div>
                                 <div className="flex items-center gap-2 text-sm">
-                                    <span className="bg-white/20 px-2 py-1 rounded">↑ 1pt</span>
+                                    <span className="bg-white/20 px-2 py-1 rounded">+1pt</span>
                                     <span>above target</span>
                                 </div>
                             </div>
@@ -181,7 +180,7 @@ export default function ComprehensiveDashboard() {
                                 <div className="text-sm font-semibold mb-2 opacity-90">Readmission Rate</div>
                                 <div className="text-4xl font-bold mb-2">12.0%</div>
                                 <div className="flex items-center gap-2 text-sm">
-                                    <span className="bg-white/20 px-2 py-1 rounded">↓ 0.3pts</span>
+                                    <span className="bg-white/20 px-2 py-1 rounded">-0.3pts</span>
                                     <span>improving</span>
                                 </div>
                             </div>
@@ -189,7 +188,7 @@ export default function ComprehensiveDashboard() {
 
                         {/* Strategic Initiatives Progress */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">🎯 Strategic Initiatives Progress</h2>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Strategic Initiatives Progress</h2>
                             <div className="space-y-4">
                                 {strategicInitiatives.map((initiative, idx) => (
                                     <div key={idx} className="border border-gray-200 rounded-xl p-6 card-hover">
@@ -201,9 +200,9 @@ export default function ComprehensiveDashboard() {
                                                         initiative.status === 'at-risk' ? 'bg-yellow-100 text-yellow-800' :
                                                             'bg-red-100 text-red-800'
                                                         }`}>
-                                                        {initiative.status === 'on-track' ? '✓ On Track' :
-                                                            initiative.status === 'at-risk' ? '⚠ At Risk' :
-                                                                '🚨 Delayed'}
+                                                        {initiative.status === 'on-track' ? 'On Track' :
+                                                            initiative.status === 'at-risk' ? 'At Risk' :
+                                                                'Delayed'}
                                                     </span>
                                                 </div>
                                                 <div className="grid grid-cols-4 gap-4 text-sm">
@@ -248,8 +247,9 @@ export default function ComprehensiveDashboard() {
 
                         {/* 12-Month Financial Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h2 className="text-2xl font-bold text-gray-900">📈 12-Month Financial Performance Trend</h2>
+                            <h2 className="text-2xl font-bold text-gray-900">12-Month Financial Performance Trend</h2>
                             <p className="text-sm text-gray-500 mb-6">Monthly revenue, cost, and margin performance over the last 12 months</p>
+                            <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Revenue, Cost, Margin, and Patient Volume Trend</div>
                             <ResponsiveContainer width="100%" height={400}>
                                 <ComposedChart data={monthlyFinancialTrend}>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -278,7 +278,7 @@ export default function ComprehensiveDashboard() {
                                     <div className="text-sm text-gray-600">Patients (Jan)</div>
                                 </div>
                                 <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                                    <div className="text-3xl font-bold text-emerald-600">↑ 41.5%</div>
+                                    <div className="text-3xl font-bold text-emerald-600">+41.5%</div>
                                     <div className="text-sm text-gray-600">YoY Growth</div>
                                 </div>
                             </div>
@@ -286,10 +286,11 @@ export default function ComprehensiveDashboard() {
 
                         {/* Risk Stratification */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h2 className="text-2xl font-bold text-gray-900">⚠️ Patient Risk Stratification & Readmission Management</h2>
+                            <h2 className="text-2xl font-bold text-gray-900">Patient Risk Stratification & Readmission Management</h2>
                             <p className="text-sm text-gray-500 mb-6">Patient distribution by risk level and readmission probability</p>
                             <div className="grid grid-cols-2 gap-6">
                                 <div>
+                                    <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Patient Count by Risk Category</div>
                                     <ResponsiveContainer width="100%" height={300}>
                                         <PieChart>
                                             <Pie
@@ -346,17 +347,17 @@ export default function ComprehensiveDashboard() {
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
                                 <div className="text-sm text-gray-600 mb-1">Total Revenue (YTD)</div>
                                 <div className="text-3xl font-bold text-gray-900">Rs. 18.2M</div>
-                                <div className="text-sm text-green-600 mt-2">↑ 8.4% vs target</div>
+                                <div className="text-sm text-green-600 mt-2">8.4% above target</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-emerald-500">
                                 <div className="text-sm text-gray-600 mb-1">Net Profit Margin</div>
                                 <div className="text-3xl font-bold text-gray-900">22.4%</div>
-                                <div className="text-sm text-green-600 mt-2">↑ 1.2% point increase</div>
+                                <div className="text-sm text-green-600 mt-2">1.2 percentage-point increase</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                                 <div className="text-sm text-gray-600 mb-1">Patient Volume</div>
                                 <div className="text-3xl font-bold text-gray-900">14,245</div>
-                                <div className="text-sm text-blue-600 mt-2">↑ 4.5% year-over-year</div>
+                                <div className="text-sm text-blue-600 mt-2">4.5% year-over-year growth</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-indigo-500">
                                 <div className="text-sm text-gray-600 mb-1">Avg Revenue/Patient</div>
@@ -367,7 +368,7 @@ export default function ComprehensiveDashboard() {
 
                         {/* Monthly Financial Performance Table */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">📅 Monthly Financial Performance</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-6">Monthly Financial Performance</h3>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
                                     <thead>
@@ -405,8 +406,9 @@ export default function ComprehensiveDashboard() {
                         {/* Payer Mix Revenue */}
                         <div className="grid grid-cols-3 gap-6">
                             <div className="col-span-2 bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900">💳 Revenue by Payer Mix</h3>
+                                <h3 className="text-xl font-bold text-gray-900">Revenue by Payer Mix</h3>
                                 <p className="text-sm text-gray-500 mb-6">Revenue contribution and profit margin by payer category</p>
+                                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Revenue and Margin by Payer Type</div>
                                 <ResponsiveContainer width="100%" height={350}>
                                     <BarChart data={payerMixRevenue}>
                                         <CartesianGrid strokeDasharray="3 3" />
@@ -446,7 +448,7 @@ export default function ComprehensiveDashboard() {
 
                         {/* Top DRGs */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900">🏥 Top 10 DRGs (Diagnosis Related Groups) by Revenue</h3>
+                            <h3 className="text-xl font-bold text-gray-900">Top 10 DRGs (Diagnosis Related Groups) by Revenue</h3>
                             <p className="text-sm text-gray-500 mb-6">Analysis of highest revenue Diagnosis Related Groups</p>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
@@ -491,8 +493,9 @@ export default function ComprehensiveDashboard() {
 
                         {/* Cost per Case Benchmarking */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900">📊 Cost per Case vs Industry Benchmark</h3>
+                            <h3 className="text-xl font-bold text-gray-900">Cost per Case vs Industry Benchmark</h3>
                             <p className="text-sm text-gray-500 mb-6">Comparison of average cost per case against industry benchmarks</p>
+                            <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Our Cost per Case vs Industry Benchmark by Service</div>
                             <ResponsiveContainer width="100%" height={400}>
                                 <BarChart data={costPerCase} layout="vertical">
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -527,12 +530,12 @@ export default function ComprehensiveDashboard() {
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-emerald-500">
                                 <div className="text-sm text-gray-600 mb-1">Mortality Rate</div>
                                 <div className="text-3xl font-bold text-gray-900">1.1%</div>
-                                <div className="text-sm text-green-600 mt-2">📉 Reduced by 0.3%</div>
+                                <div className="text-sm text-green-600 mt-2">Reduced by 0.3%</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                                 <div className="text-sm text-gray-600 mb-1">Infection Rate</div>
                                 <div className="text-3xl font-bold text-gray-900">0.7%</div>
-                                <div className="text-sm text-blue-600 mt-2">✓ Below national avg</div>
+                                <div className="text-sm text-blue-600 mt-2">Below national average</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500">
                                 <div className="text-sm text-gray-600 mb-1">Readmission (30-day)</div>
@@ -542,14 +545,15 @@ export default function ComprehensiveDashboard() {
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-purple-500">
                                 <div className="text-sm text-gray-600 mb-1">Patient Satisfaction</div>
                                 <div className="text-3xl font-bold text-gray-900">88%</div>
-                                <div className="text-sm text-purple-600 mt-2">↑ Top tier ranking</div>
+                                <div className="text-sm text-purple-600 mt-2">Top-tier ranking</div>
                             </div>
                         </div>
 
                         {/* Quality Metrics Trend */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900">📈 Quality Metrics - 6 Month Trend</h3>
+                            <h3 className="text-xl font-bold text-gray-900">Quality Metrics - 6 Month Trend</h3>
                             <p className="text-sm text-gray-500 mb-6">Trends in mortality, infection, readmission, and satisfaction rates</p>
+                            <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: 6-Month Clinical Quality Trend</div>
                             <ResponsiveContainer width="100%" height={350}>
                                 <LineChart data={qualityTrend}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -568,8 +572,9 @@ export default function ComprehensiveDashboard() {
                         {/* Patient Satisfaction Radar */}
                         <div className="grid grid-cols-2 gap-6">
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900">⭐ Patient Satisfaction by Category</h3>
+                                <h3 className="text-xl font-bold text-gray-900">Patient Satisfaction by Category</h3>
                                 <p className="text-sm text-gray-500 mb-6">Satisfaction scores across key service categories vs benchmarks</p>
+                                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Satisfaction Scores vs Benchmark by Category</div>
                                 <ResponsiveContainer width="100%" height={400}>
                                     <RadarChart data={satisfactionByCategory}>
                                         <PolarGrid />
@@ -583,7 +588,7 @@ export default function ComprehensiveDashboard() {
                                 </ResponsiveContainer>
                             </div>
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">📋 Detailed Breakdown</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Detailed Breakdown</h3>
                                 <div className="space-y-3">
                                     {satisfactionByCategory.map((cat, idx) => (
                                         <div key={idx} className="border border-gray-200 rounded-lg p-4">
@@ -611,8 +616,9 @@ export default function ComprehensiveDashboard() {
 
                         {/* Readmission Analysis */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900">🔄 30-Day Readmission Analysis by Diagnosis</h3>
+                            <h3 className="text-xl font-bold text-gray-900">30-Day Readmission Analysis by Diagnosis</h3>
                             <p className="text-sm text-gray-500 mb-6">30-day readmission rates and cost impact by diagnosis</p>
+                            <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Readmission Rate and Cost Impact by Diagnosis</div>
                             <ResponsiveContainer width="100%" height={350}>
                                 <BarChart data={readmissionByDiagnosis}>
                                     <CartesianGrid strokeDasharray="3 3" />
@@ -648,28 +654,28 @@ export default function ComprehensiveDashboard() {
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-orange-500">
                                 <div className="text-sm text-gray-600 mb-1">Bed Turnover Rate</div>
                                 <div className="text-3xl font-bold text-gray-900">2.3 hrs</div>
-                                <div className="text-sm text-green-600 mt-2">⚡ Improving speed</div>
+                                <div className="text-sm text-green-600 mt-2">Improving speed</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
                                 <div className="text-sm text-gray-600 mb-1">Avg ER Wait Time</div>
                                 <div className="text-3xl font-bold text-gray-900">32 min</div>
-                                <div className="text-sm text-blue-600 mt-2">✓ Below 40m target</div>
+                                <div className="text-sm text-blue-600 mt-2">Below 40-minute target</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-yellow-500">
                                 <div className="text-sm text-gray-600 mb-1">Surgery Start On-Time</div>
                                 <div className="text-3xl font-bold text-gray-900">87%</div>
-                                <div className="text-sm text-yellow-600 mt-2">⚠ Near 90% target</div>
+                                <div className="text-sm text-yellow-600 mt-2">Near 90% target</div>
                             </div>
                             <div className="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
                                 <div className="text-sm text-gray-600 mb-1">Discharge &lt; Noon</div>
                                 <div className="text-3xl font-bold text-gray-900">42%</div>
-                                <div className="text-sm text-red-600 mt-2">↓ Lagging target (50%)</div>
+                                <div className="text-sm text-red-600 mt-2">Below target (50%)</div>
                             </div>
                         </div>
 
                         {/* Operational Metrics List */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">⚙️ Detailed Operational Efficiency Metrics</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-6">Detailed Operational Efficiency Metrics</h3>
                             <div className="space-y-4">
                                 {operationalMetrics.map((metric, idx) => (
                                     <div key={idx} className="border border-gray-200 rounded-xl p-6 card-hover">
@@ -710,9 +716,9 @@ export default function ComprehensiveDashboard() {
                                                         metric.trend === 'stable' ? 'text-blue-600' :
                                                             'text-red-600'
                                                         }`}>
-                                                        {metric.trend === 'improving' ? '↑ Improving' :
-                                                            metric.trend === 'stable' ? '→ Stable' :
-                                                                '↓ Declining'}
+                                                        {metric.trend === 'improving' ? 'Improving' :
+                                                            metric.trend === 'stable' ? 'Stable' :
+                                                                'Declining'}
                                                     </span>
                                                 </div>
                                             </div>
@@ -724,7 +730,7 @@ export default function ComprehensiveDashboard() {
 
                         {/* LOS Analysis */}
                         <div className="bg-white rounded-2xl shadow-premium p-8">
-                            <h3 className="text-xl font-bold text-gray-900 mb-6">📊 Length of Stay (LOS) Analysis by Department</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-6">Length of Stay (LOS) Analysis by Department</h3>
                             <div className="overflow-x-auto">
                                 <table className="w-full">
                                     <thead>
@@ -757,9 +763,9 @@ export default function ComprehensiveDashboard() {
                                                         dept.variance <= 0.3 ? 'bg-yellow-100 text-yellow-800' :
                                                             'bg-red-100 text-red-800'
                                                         }`}>
-                                                        {dept.variance <= 0 ? '✓ Exceeding' :
-                                                            dept.variance <= 0.3 ? '→ On Track' :
-                                                                '⚠ At Risk'}
+                                                        {dept.variance <= 0 ? 'Exceeding' :
+                                                            dept.variance <= 0.3 ? 'On Track' :
+                                                                'At Risk'}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -777,7 +783,7 @@ export default function ComprehensiveDashboard() {
                         {/* ED Metrics */}
                         <div className="grid grid-cols-2 gap-6">
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900 mb-6">🚑 Emergency Department Performance</h3>
+                                <h3 className="text-xl font-bold text-gray-900 mb-6">Emergency Department Performance</h3>
                                 <div className="space-y-4">
                                     <div className="bg-red-50 rounded-lg p-4">
                                         <div className="flex justify-between items-center">
@@ -806,8 +812,9 @@ export default function ComprehensiveDashboard() {
                                 </div>
                             </div>
                             <div className="bg-white rounded-2xl shadow-premium p-8">
-                                <h3 className="text-xl font-bold text-gray-900">📊 Severity Distribution</h3>
+                                <h3 className="text-xl font-bold text-gray-900">Severity Distribution</h3>
                                 <p className="text-sm text-gray-500 mb-6">Breakdown of emergency department visits by severity level</p>
+                                <div className="inline-flex items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 mb-3">Chart Topic: Emergency Visit Share by Severity Level</div>
                                 <ResponsiveContainer width="100%" height={250}>
                                     <PieChart>
                                         <Pie
@@ -861,7 +868,7 @@ export default function ComprehensiveDashboard() {
                                                     : data.predicted}
                                             </div>
                                             <div className={`text-sm font-bold px-2 py-1 rounded-full ${data.change > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                                                {data.change > 0 ? '↑' : '↓'} {Math.abs(data.change).toFixed(1)}%
+                                                {data.change > 0 ? '+' : '-'}{Math.abs(data.change).toFixed(1)}%
                                             </div>
                                         </div>
                                         <div className="space-y-2">
@@ -883,7 +890,7 @@ export default function ComprehensiveDashboard() {
 
                         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
                             <div className="flex gap-4">
-                                <div className="text-4xl">💡</div>
+                                <div className="text-sm font-semibold text-blue-700 uppercase tracking-wide">Insight</div>
                                 <div>
                                     <h3 className="text-lg font-bold text-blue-900">AI Strategic Insight</h3>
                                     <p className="text-blue-800 mt-1">
