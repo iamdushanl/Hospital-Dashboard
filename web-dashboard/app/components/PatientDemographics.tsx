@@ -92,7 +92,7 @@ export default function PatientDemographics() {
                     </ResponsiveContainer>
                     <div className="mt-4 space-y-2">
                         {insuranceDistribution.map((item, idx) => (
-                            <div key={idx} className="flex justify-between items-center text-sm">
+                            <div key={idx} className="flex justify-between items-center text-sm text-gray-700">
                                 <div className="flex items-center gap-2">
                                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
                                     <span>{item.type}</span>
@@ -180,8 +180,8 @@ export default function PatientDemographics() {
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between mb-2">
-                                <span className="text-sm font-semibold">Sinhala</span>
-                                <span className="text-sm font-semibold">52%</span>
+                                <span className="text-sm font-semibold text-gray-700">Sinhala</span>
+                                <span className="text-sm font-semibold text-gray-700">52%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-3">
                                 <div className="bg-orange-500 h-3 rounded-full" style={{ width: '52%' }}></div>
@@ -189,8 +189,8 @@ export default function PatientDemographics() {
                         </div>
                         <div>
                             <div className="flex justify-between mb-2">
-                                <span className="text-sm font-semibold">Tamil</span>
-                                <span className="text-sm font-semibold">28%</span>
+                                <span className="text-sm font-semibold text-gray-700">Tamil</span>
+                                <span className="text-sm font-semibold text-gray-700">28%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-3">
                                 <div className="bg-red-500 h-3 rounded-full" style={{ width: '28%' }}></div>
@@ -198,8 +198,8 @@ export default function PatientDemographics() {
                         </div>
                         <div>
                             <div className="flex justify-between mb-2">
-                                <span className="text-sm font-semibold">English</span>
-                                <span className="text-sm font-semibold">20%</span>
+                                <span className="text-sm font-semibold text-gray-700">English</span>
+                                <span className="text-sm font-semibold text-gray-700">20%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-3">
                                 <div className="bg-blue-500 h-3 rounded-full" style={{ width: '20%' }}></div>
@@ -218,8 +218,8 @@ export default function PatientDemographics() {
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between mb-2">
-                                <span className="text-sm font-semibold">Sri Lankan Citizens</span>
-                                <span className="text-sm font-semibold">91.1%</span>
+                                <span className="text-sm font-semibold text-gray-700">Sri Lankan Citizens</span>
+                                <span className="text-sm font-semibold text-gray-700">91.1%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-3">
                                 <div className="bg-green-500 h-3 rounded-full" style={{ width: '91.1%' }}></div>
@@ -227,8 +227,8 @@ export default function PatientDemographics() {
                         </div>
                         <div>
                             <div className="flex justify-between mb-2">
-                                <span className="text-sm font-semibold">Medical Tourism (Foreign)</span>
-                                <span className="text-sm font-semibold">8.9%</span>
+                                <span className="text-sm font-semibold text-gray-700">Medical Tourism (Foreign)</span>
+                                <span className="text-sm font-semibold text-gray-700">8.9%</span>
                             </div>
                             <div className="w-full bg-gray-200 rounded-full h-3">
                                 <div className="bg-blue-500 h-3 rounded-full" style={{ width: '8.9%' }}></div>
